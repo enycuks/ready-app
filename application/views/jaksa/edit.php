@@ -10,8 +10,8 @@
                             <div class="page-header-title">
                                 <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
                                 <div class="d-inline">
-                                    <h4>Instansi</h4>
-                                    <span>Data - Data Instansi</span>
+                                    <h4>JAKSA</h4>
+                                    <span>Data - Data Jaksa</span>
                                 </div>
                             </div>
                         </div>
@@ -36,13 +36,19 @@
 
                                 </div>
                                 <div class="card-block">
-                                    <h4 class="sub-title">Edit Data Instansi</h4>
+                                    <h4 class="sub-title">Edit Data Jaksa</h4>
                                     <form method="POST" action="">
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Instansi</label>
+                                            <label class="col-sm-2 col-form-label">Jaksa</label>
                                             <div class="col-sm-10">
-                                                <input type="hidden" class="form-control" name="id" value="<?= $instansi['id'] ?>">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Instansi" value="<?= $instansi['nama'] ?>" required>
+                                                <input type="hidden" class="form-control" name="id" value="<?= $jaksa['id'] ?>">
+                                                <input type="text" class="form-control" name="nama" placeholder="Nama Jaksa" value="<?= $jaksa['nama'] ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" name="email" placeholder="Email Jaksa" value="<?= $jaksa['email'] ?>" required>
                                             </div>
                                         </div>
                                         <button type=" submit" class="btn btn-primary btn-sm">Simpan</button>
