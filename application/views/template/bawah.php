@@ -65,6 +65,14 @@
 <script src="<?= base_url() ?>assets/js/pcoded.min.js"></script>
 <script src="<?= base_url() ?>assets/js/demo-12.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="<?= base_url() ?>assets/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
+
 </body>
 
 </html>

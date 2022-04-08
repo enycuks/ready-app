@@ -29,6 +29,8 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/jquery.mCustomScrollbar.css">
+
+    <link href="<?= base_url() ?>assets/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -151,6 +153,14 @@
                                             <a href="<?= base_url() ?>jaksa">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jaksa</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
+                                        <li class=" ">
+                                            <a href="<?= base_url() ?>satker">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Satker</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
