@@ -29,6 +29,8 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/jquery.mCustomScrollbar.css">
+
+    <link href="<?= base_url() ?>assets/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -155,10 +157,18 @@
                                             </a>
                                         </li>
 
+                                        <li class=" ">
+                                            <a href="<?= base_url() ?>satker">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Satker</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a href="index.html">
+                                    <a href="<?= base_url() ?>spdp">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
