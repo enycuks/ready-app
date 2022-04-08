@@ -168,7 +168,7 @@
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a href="index.html">
+                                    <a href="<?= base_url() ?>spdp">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
