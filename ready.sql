@@ -30,25 +30,31 @@ CREATE TABLE IF NOT EXISTS `data_pelapor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ready.data_pelapor: ~0 rows (approximately)
+-- Dumping data for table ready.data_pelapor: ~2 rows (approximately)
 /*!40000 ALTER TABLE `data_pelapor` DISABLE KEYS */;
 INSERT INTO `data_pelapor` (`id`, `penyidik`, `nama_tersangka`, `pasal`, `jpu`, `kasi`, `aspidum`, `tgl`) VALUES
-	(1, 7, 'Asrul', '30 ayat 1', 3, 4, 3, '2022-04-09');
+	(1, 7, 'Asrul', '30 ayat 1', 3, 4, 3, '2022-04-09'),
+	(2, 1, 'jamet', 'pasl 31', 3, 4, 3, '2022-04-11');
 /*!40000 ALTER TABLE `data_pelapor` ENABLE KEYS */;
 
 -- Dumping structure for table ready.instansi
 CREATE TABLE IF NOT EXISTS `instansi` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
+  `no_hp` varchar(14) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ready.instansi: ~3 rows (approximately)
+-- Dumping data for table ready.instansi: ~0 rows (approximately)
 /*!40000 ALTER TABLE `instansi` DISABLE KEYS */;
-INSERT INTO `instansi` (`id`, `nama`) VALUES
-	(1, 'DEWI FITRIANA'),
-	(3, 'NADYA WATI'),
-	(4, 'INDRA WIJAYA aaaaaaa');
+INSERT INTO `instansi` (`id`, `nama`, `no_hp`) VALUES
+	(1, 'POLDA - KRIM.MUM', '12345'),
+	(2, 'POLDA - KRISMUS', '1234'),
+	(3, 'POLDA - NARKOTIKA', '12345678'),
+	(4, 'POLDA - TIPIKOR', '12212121'),
+	(5, 'BNNP', '2232'),
+	(6, 'DISHUT', '121212'),
+	(7, 'SPOC', '222');
 /*!40000 ALTER TABLE `instansi` ENABLE KEYS */;
 
 -- Dumping structure for table ready.satker_jaksa

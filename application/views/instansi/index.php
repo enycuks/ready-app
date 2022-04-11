@@ -51,6 +51,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Instansi</th>
+                                                        <th>Nomor Telepon</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -60,6 +61,7 @@
                                                         <tr>
                                                             <th scope="row"><?= $no++ ?></th>
                                                             <td><?= $value['nama'] ?></td>
+                                                            <td><?= $value['no_hp'] ?></td>
                                                             <td><a href="<?= base_url() ?>instansi/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
                                                                     <i class="icofont icofont-pencil-alt-5"></i>
                                                                 </a>

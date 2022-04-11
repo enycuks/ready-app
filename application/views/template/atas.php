@@ -174,6 +174,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="">
+                                    <a href="<?= base_url() ?>spdp">
+                                        <span class="pcoded-micon"><i class=" ti-rocket"></i></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">SPDP</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                             </ul>
 
                         </div>

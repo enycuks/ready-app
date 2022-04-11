@@ -41,7 +41,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Instansi</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Instansi" required>
+                                                <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Instansi" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Nomor Telepon</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="no_hp" placeholder="Masukkan Nomor Telepon" required>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
