@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.7.33 - MySQL Community Server (GPL)
+-- Host:                         localhost
+-- Server version:               5.7.24 - MySQL Community Server (GPL)
 -- Server OS:                    Win64
--- HeidiSQL Version:             11.2.0.6213
+-- HeidiSQL Version:             10.2.0.5599
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,7 +10,6 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Dumping database structure for ready
@@ -28,13 +27,15 @@ CREATE TABLE IF NOT EXISTS `data_pelapor` (
   `aspidum` int(5) DEFAULT NULL,
   `tgl` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ready.data_pelapor: ~2 rows (approximately)
+-- Dumping data for table ready.data_pelapor: ~3 rows (approximately)
 /*!40000 ALTER TABLE `data_pelapor` DISABLE KEYS */;
 INSERT INTO `data_pelapor` (`id`, `penyidik`, `nama_tersangka`, `pasal`, `jpu`, `kasi`, `aspidum`, `tgl`) VALUES
 	(1, 7, 'Asrul', '30 ayat 1', 3, 4, 3, '2022-04-09'),
-	(2, 1, 'jamet', 'pasl 31', 3, 4, 3, '2022-04-11');
+	(2, 1, 'jamet', 'pasl 31', 3, 4, 3, '2022-04-11'),
+	(3, 2, 'redd r', '32', 3, 4, 3, '2022-04-12'),
+	(4, 3, 'redd', '32', 3, 4, 7, '2022-04-11');
 /*!40000 ALTER TABLE `data_pelapor` ENABLE KEYS */;
 
 -- Dumping structure for table ready.instansi
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `instansi` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ready.instansi: ~0 rows (approximately)
+-- Dumping data for table ready.instansi: ~7 rows (approximately)
 /*!40000 ALTER TABLE `instansi` DISABLE KEYS */;
 INSERT INTO `instansi` (`id`, `nama`, `no_hp`) VALUES
 	(1, 'POLDA - KRIM.MUM', '12345'),
@@ -96,21 +97,21 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(50) DEFAULT NULL,
   `role` enum('1','2','3','4','5','6','7') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Dumping data for table ready.user: ~7 rows (approximately)
+-- Dumping data for table ready.user: ~0 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `nama`, `nip`, `jabatan`, `satker`, `email`, `no_hp`, `password`, `role`) VALUES
 	(1, 'Fendi Admin', '196305041991032002', 'Admin', 1, 'fendcuk@gmail.com', '123', 'aduh', '1'),
-	(2, 'Fendi Operator', '123333', 'Operator', 2, 'fencuk@gmail.com', '123', 'aduh', '2'),
+	(2, 'Adam Operator', '123333', 'Operator', 2, 'fencuk@gmail.com', '123', 'aduh', '2'),
 	(3, 'Fendi JPU', '123333', 'JPU', 1, 'fencuk@gmail.com', '123', 'aduh', '3'),
-	(4, 'Fendi KASI', '123333', 'KASI', 4, 'fencuk@gmail.com', '123', 'aduh', '4'),
-	(5, 'Fendi Wakajati', '123333', 'Wakajati', 3, 'fencuk@gmail.com', '123', 'aduh', '5'),
-	(6, 'Fendi Penyidik', '123333', 'Penyiduk', 4, 'fencuk@gmail.com', '123', 'aduh', '6'),
-	(7, 'Fendi JPU', '123333', 'Aspidum', 2, 'fencuk@gmail.com', '123', 'aduh', '6');
+	(4, 'Adam KASI', '123333', 'KASI', 4, 'fencuk@gmail.com', '123', 'aduh', '4'),
+	(5, 'Rudi Wakajati', '123333', 'Wakajati', 3, 'fencuk@gmail.com', '123', 'aduh', '5'),
+	(7, 'Asin Aspidum', '123333', 'Aspidum', 2, 'fencuk@gmail.com', '123', 'aduh', '6'),
+	(8, 'Alan JPU', '12355', 'JPU', 5, 'siemail.mne@gmail.com', '123', 'aduh', '3'),
+	(9, 'Rusli Kasi', '1234', 'KASI', 5, 'siemail.mne@gmail.com', '5454', 'aduh', '4');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

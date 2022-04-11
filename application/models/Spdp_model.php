@@ -19,6 +19,15 @@ class Spdp_model extends CI_model
         return $query->result_array();
     }
 
+    public function getASPIDUM()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('user.role', '6');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getKASI()
     {
         $this->db->select('*');
