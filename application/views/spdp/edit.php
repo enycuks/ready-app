@@ -10,7 +10,7 @@
                             <div class="page-header-title">
                                 <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
                                 <div class="d-inline">
-                                    <h4>SPDP</h4>
+                                    <h4>Surat Pemberitahuan Dimulai Penyidikan</h4>
                                     <span>Ubah SPDP</span>
                                 </div>
                             </div>

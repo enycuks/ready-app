@@ -127,13 +127,13 @@
 
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <!-- <li class="">
                                     <a href="index.html">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
@@ -167,10 +167,17 @@
 
                                     </ul>
                                 </li>
-                                <li class="">
+                                <!-- <li class="">
                                     <a href="<?= base_url() ?>spdp">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li> -->
+                                <li class="">
+                                    <a href="<?= base_url() ?>spdp">
+                                        <span class="pcoded-micon"><i class=" ti-rocket"></i></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">SPDP</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>

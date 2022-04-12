@@ -5,8 +5,7 @@ class Spdp_model extends CI_model
     public function getPenyidik()
     {
         $this->db->select('*');
-        $this->db->from('user');
-        $this->db->where('user.role', '6');
+        $this->db->from('instansi');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -16,6 +15,15 @@ class Spdp_model extends CI_model
         $this->db->select('*');
         $this->db->from('user');
         $this->db->where('user.role', '3');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getASPIDUM()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('user.role', '6');
         $query = $this->db->get();
         return $query->result_array();
     }

@@ -10,7 +10,7 @@
                             <div class="page-header-title">
                                 <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
                                 <div class="d-inline">
-                                    <h4>SPDP</h4>
+                                    <h4>Surat Pemberitahuan Dimulai Penyidikan</h4>
                                     <span>Input SPDP</span>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
 
                                 </div>
                                 <div class="card-block">
-                                    <h4 class="sub-title">Input Data SPDP</h4>
+                                    <h4 class="sub-title">Input SPDP</h4>
                                     <form method="POST" action="">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Penyidik</label>
@@ -92,19 +92,19 @@
                                                 <select class="js-example-basic-single" name="aspidum" required>
                                                     <option value="">--Pilih ASPIDUM--</option>
                                                     <?php
-                                                    foreach ($jpu as $val) : ?>
+                                                    foreach ($aspidum as $val) : ?>
                                                         <option value="<?= $val['id'] ?>"><?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Tanggal</label>
+                                            <label class="col-sm-2 col-form-label">Tanggal Masuk</label>
                                             <div class="col-sm-10">
                                                 <input type="date" class="form-control" name="tgl" required>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
                                         <button type="reset" class="btn btn-danger btn-sm">Batal</button>
                                     </form>
 

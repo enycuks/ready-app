@@ -42,7 +42,13 @@
                                             <label class="col-sm-2 col-form-label">Instansi</label>
                                             <div class="col-sm-10">
                                                 <input type="hidden" class="form-control" name="id" value="<?= $instansi['id'] ?>">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Instansi" value="<?= $instansi['nama'] ?>" required>
+                                                <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Instansi" value="<?= $instansi['nama'] ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Nomor Telepon</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="no_hp" placeholder="Masukkan Nomor Telepon" value="<?= $instansi['no_hp'] ?>" required>
                                             </div>
                                         </div>
                                         <button type=" submit" class="btn btn-primary btn-sm">Simpan</button>

@@ -5,7 +5,8 @@ class Instansi_model extends CI_model
     public function tambah()
     {
         $data = [
-            "nama" => $this->input->post('nama', true)
+            "nama" => $this->input->post('nama', true),
+            "no_hp" => $this->input->post('no_hp', true)
         ];
 
         $this->db->insert('instansi', $data);
@@ -14,7 +15,8 @@ class Instansi_model extends CI_model
     public function edit()
     {
         $data = [
-            "nama" => $this->input->post('nama', true)
+            "nama" => $this->input->post('nama', true),
+            "no_hp" => $this->input->post('no_hp', true)
         ];
 
         $id = $this->input->post('id');
