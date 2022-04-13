@@ -54,7 +54,13 @@ class Spdp_model extends CI_model
 
     public function getAllSpdp()
     {
-        return $this->db->get('data_pelapor')->result_array();
+        // return $this->db->get('data_pelapor')->result_array();
+        $this->db->select('*');
+        $this->db->from('data_pelapor');
+        $this->db->join('user', 'data_pelapor.jpu = user.id_user');
+        // $this->db->join('table3', 'table1.id = table3.id');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function getSpdpById($id)

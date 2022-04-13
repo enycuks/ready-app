@@ -69,7 +69,7 @@
                                                     <option value="">--Pilih JPU--</option>
                                                     <?php
                                                     foreach ($jpu as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>"><?= $val['nama'] ?></option>
+                                                        <option value="<?= $val['id_user'] ?>"><?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -81,7 +81,7 @@
                                                     <option value="">--Pilih KASI--</option>
                                                     <?php
                                                     foreach ($kasi as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>"><?= $val['nama'] ?></option>
+                                                        <option value="<?= $val['id_user'] ?>"><?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -93,7 +93,7 @@
                                                     <option value="">--Pilih ASPIDUM--</option>
                                                     <?php
                                                     foreach ($aspidum as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>"><?= $val['nama'] ?></option>
+                                                        <option value="<?= $val['id_user'] ?>"><?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
