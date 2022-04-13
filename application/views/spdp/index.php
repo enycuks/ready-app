@@ -43,6 +43,10 @@
                                             Selamat <strong>SPDP</strong> <?= $this->session->flashdata('flash'); ?>.
                                         </div>
                                     <?php endif; ?>
+                                    <?php if ($this->session->flashdata('flash_email')) : ?> <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            Selamat <strong>SPDP</strong> <?= $this->session->flashdata('flash_email'); ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <br>
                                     <div class="card-block table-border-style">
                                         <div class="table-responsive">
@@ -51,6 +55,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Tersangka</th>
+                                                        <th>JPU</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -60,7 +65,12 @@
                                                         <tr>
                                                             <th scope="row"><?= $no++ ?></th>
                                                             <td><?= $value['nama_tersangka'] ?></td>
-                                                            <td><a href="<?= base_url() ?>spdp/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
+                                                            <td><?= $value['nama'] ?></td>
+                                                            <td>
+                                                                <a href="<?= base_url() ?>send_email/index" class="btn btn-primary btn-sm">
+                                                                    <i class="ti-email"></i>
+                                                                </a>
+                                                                <a href="<?= base_url() ?>spdp/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
                                                                     <i class="icofont icofont-pencil-alt-5"></i>
                                                                 </a>
                                                                 <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>spdp/delete/<?= $value['id']; ?>" class="btn btn-danger btn-sm">

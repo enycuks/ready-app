@@ -44,7 +44,8 @@ class Send_email extends CI_Controller
 
         // Tampilkan pesan sukses atau error
         if ($this->email->send()) {
-            echo 'Sukses! email berhasil dikirim.';
+            $this->session->set_flashdata('flash_email', 'Telah Terkirim');
+            redirect('spdp');
         } else {
             echo 'Error! email tidak dapat dikirim.';
         }
