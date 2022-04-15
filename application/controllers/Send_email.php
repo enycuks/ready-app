@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Send_email extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Jaksa_model');
+    }
 
     /**
      * Kirim email dengan SMTP Gmail.
@@ -27,27 +32,57 @@ class Send_email extends CI_Controller
         // Load library email dan konfigurasinya
         $this->load->library('email', $config);
 
+        $fendi = $this->Jaksa_model->getAllJaksa();
+
+        $sql = $this->db->query("SELECT id, nama_tersangka, DATEDIFF(tgl, CURDATE()) AS Umur 
+        FROM data_pelapor WHERE (CURDATE()-(tgl)) = 4");
+        $cek_nim = $sql->num_rows();
+        if ($cek_nim > 0) {
+            echo "ada";
+            foreach ($fendi as $u) {
+                $awal  = $u['nama_tersangka'];
+                echo $awal;
+            }
+        } else {
+            echo "Tidak ada";
+        }
+
+        $sql = $this->db->query("SELECT id, nama_tersangka, status, DATEDIFF(tgl, CURDATE()) AS Umur 
+        FROM data_pelapor WHERE (CURDATE()-(tgl)) = 8");
+        $cek_nim = $sql->num_rows();
+        if ($cek_nim > 0) {
+            // echo "ada";
+            foreach ($sql->result_array() as $u) {
+                $selisih = $u['status'];
+                // echo $selisih;
+                if ($selisih == "y") {
+                    $awal  = $u['nama_tersangka'];
+                    echo $awal;
+                }
+            }
+        } else {
+            echo "Tidak ada";
+        }
+
+
         // Email dan nama pengirim
         $this->email->from('enycuks@gmail.com', 'Mas Fendi');
 
         // Email penerima
-        $this->email->to('siemail.mne@gmail.com'); // Ganti dengan email tujuan
+        // $this->email->to(implode(', ', $recipients)); // Ganti dengan email tujuan
 
-        // // Lampiran email, isi dengan url/path file
-        // $this->email->attach('https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+        // // Subject email
+        // $this->email->subject('Website Mas Effendi | Muhammad Nur Effendi');
 
-        // Subject email
-        $this->email->subject('Website Mas Effendi | Muhammad Nur Effendi');
-
-        // Isi email
-        $this->email->message("Mohon Periksa Aplikasi Ada SPDP Baru");
+        // // Isi email
+        // $this->email->message("Mohon Periksa Aplikasi Ada SPDP Baru");
 
         // Tampilkan pesan sukses atau error
-        if ($this->email->send()) {
-            $this->session->set_flashdata('flash_email', 'Telah Terkirim');
-            redirect('spdp');
-        } else {
-            echo 'Error! email tidak dapat dikirim.';
-        }
+        // if ($this->email->send()) {
+        //     $this->session->set_flashdata('flash_email', 'Telah Terkirim');
+        //     redirect('spdp');
+        // } else {
+        //     echo 'Error! email tidak dapat dikirim.';
+        // }
     }
 }
