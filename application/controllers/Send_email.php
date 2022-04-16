@@ -34,34 +34,45 @@ class Send_email extends CI_Controller
 
         $fendi = $this->Jaksa_model->getAllJaksa();
 
-        $sql = $this->db->query("SELECT id, nama_tersangka, DATEDIFF(tgl, CURDATE()) AS Umur 
-        FROM data_pelapor WHERE (CURDATE()-(tgl)) = 4");
+        $sql = $this->db->query("SELECT data_pelapor.id, data_pelapor.nama_tersangka, 
+        data_pelapor.status, data_pelapor.jpu,
+        user.id_user, user.nama,
+        
+        DATEDIFF(tgl, CURDATE())
+        FROM data_pelapor 
+        
+        INNER JOIN user
+        ON data_pelapor.jpu = user.id_user
+        
+        WHERE (CURDATE()-(tgl)) = 4");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
-            echo "ada";
-            foreach ($fendi as $u) {
-                $awal  = $u['nama_tersangka'];
-                echo $awal;
+            // echo "ada selisih 4 hari";
+            foreach ($sql->result_array() as $u) {
+                $selisih = $u['status'];
+                if ($selisih == "n") {
+                    $sambung =  $u['nama_tersangka'];
+                    echo $sambung;
+                }
             }
         } else {
-            echo "Tidak ada";
+            echo "Tidak ada selisih 4 hari";
         }
 
         $sql = $this->db->query("SELECT id, nama_tersangka, status, DATEDIFF(tgl, CURDATE()) AS Umur 
         FROM data_pelapor WHERE (CURDATE()-(tgl)) = 8");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
-            // echo "ada";
+            // echo "ada selisih 8 hari";
             foreach ($sql->result_array() as $u) {
                 $selisih = $u['status'];
-                // echo $selisih;
                 if ($selisih == "y") {
                     $awal  = $u['nama_tersangka'];
                     echo $awal;
                 }
             }
         } else {
-            echo "Tidak ada";
+            // echo "Tidak ada selisih 8 hari";
         }
 
 
