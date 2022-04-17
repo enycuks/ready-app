@@ -6,7 +6,7 @@ class Send_email extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Jaksa_model');
+        $this->load->model('Spdp_model');
     }
 
     /**
@@ -117,26 +117,29 @@ class Send_email extends CI_Controller
         // Email dan nama pengirim
         $this->email->from('enycuks@gmail.com', 'Mas Fendi');
 
-        $sql = $this->db->query("SELECT data_pelapor.id, data_pelapor.nama_tersangka, 
-        data_pelapor.status, data_pelapor.jpu, data_pelapor.kasi, data_pelapor.aspidum, user.id_user, user.nama,user.email,  FROM data_pelapor WHERE data_pelapor.id = $id
-        INNER JOIN user ON data_pelapor.jpu = user.id_user");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.status AS sts, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum WHERE pelapor.id = '$id'");
         $row = $sql->row_array();
-        var_dump($row);
+        // echo $row['jp_email'], $row['ks_email'], $row['asp_email'];
 
-        // // Email penerima
-        // $this->email->to('joem.borneo@gmail.com'); // Ganti dengan email tujuan
+        $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'];
+        // echo $isi;
 
-        // // Subject email
-        // $this->email->subject('Website Mas Effendi | Muhammad Nur Effendi');
+        // Email penerima
+        $this->email->to($isi); // Ganti dengan email tujuan
 
-        // // Isi email
-        // $this->email->message("Mohon Periksa Aplikasi Ada SPDP Baru");
+        // Subject email
+        $this->email->subject('Website Mas Effendi | Muhammad Nur Effendi');
 
-        // // Tampilkan pesan sukses atau error
-        // if ($this->email->send()) {
-        //     echo 'Sukses! email berhasil dikirim.';
-        // } else {
-        //     echo 'Error! email tidak dapat dikirim.';
-        // }
+        // Isi email
+        $this->email->message("Mohon Periksa Aplikasi Ada SPDP Baru");
+
+        // Tampilkan pesan sukses atau error
+        if ($this->email->send()) {
+            $this->Spdp_model->tgl($id);
+            $this->session->set_flashdata('flash_email', 'Email Berhasil Terkirim');
+            redirect('spdp');
+        } else {
+            echo 'Error! email tidak dapat dikirim.';
+        }
     }
 }

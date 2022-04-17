@@ -98,12 +98,6 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Tanggal Masuk</label>
-                                            <div class="col-sm-10">
-                                                <input type="date" class="form-control" name="tgl" required>
-                                            </div>
-                                        </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
                                         <button type="reset" class="btn btn-danger btn-sm">Batal</button>
                                     </form>

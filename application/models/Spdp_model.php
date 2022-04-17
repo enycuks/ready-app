@@ -46,7 +46,7 @@ class Spdp_model extends CI_model
             "jpu" => $this->input->post('jpu', true),
             "kasi" => $this->input->post('kasi', true),
             "aspidum" => $this->input->post('aspidum', true),
-            "tgl" => $this->input->post('tgl', true)
+            "status" => "n"
         ];
 
         $this->db->insert('data_pelapor', $data);
@@ -80,8 +80,7 @@ class Spdp_model extends CI_model
             "pasal" => $this->input->post('pasal', true),
             "jpu" => $this->input->post('jpu', true),
             "kasi" => $this->input->post('kasi', true),
-            "aspidum" => $this->input->post('aspidum', true),
-            "tgl" => $this->input->post('tgl', true)
+            "aspidum" => $this->input->post('aspidum', true)
         ];
 
         $id = $this->input->post('id');
@@ -94,5 +93,15 @@ class Spdp_model extends CI_model
     {
         $this->db->where('id', $id);
         $this->db->delete('data_pelapor');
+    }
+
+    public function tgl($id)
+    {
+        $this->db->where('id', $id);
+        $now = date('Y-m-d');
+        $data = [
+            "tgl" => $now
+        ];
+        $this->db->update('data_pelapor', $data);
     }
 }
