@@ -36,7 +36,7 @@ class Jaksa_model extends CI_model
 
     public function getAllJaksa()
     {
-        return $this->db->get('jaksa')->result_array();
+        return $this->db->get('data_pelapor')->result_array();
     }
 
 

@@ -26,15 +26,16 @@ CREATE TABLE IF NOT EXISTS `data_pelapor` (
   `kasi` int(5) DEFAULT NULL,
   `aspidum` int(5) DEFAULT NULL,
   `tgl` date DEFAULT NULL,
+  `status` enum('y','n') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ready.data_pelapor: ~4 rows (approximately)
+-- Dumping data for table ready.data_pelapor: ~3 rows (approximately)
 /*!40000 ALTER TABLE `data_pelapor` DISABLE KEYS */;
-INSERT INTO `data_pelapor` (`id`, `penyidik`, `nama_tersangka`, `pasal`, `jpu`, `kasi`, `aspidum`, `tgl`) VALUES
-	(1, 7, 'Asrul', '30 ayat 1', 3, 4, 3, '2022-04-09'),
-	(2, 1, 'jamet', 'pasl 31', 3, 4, 3, '2022-04-11'),
-	(6, 3, 'asri', '32', 3, 4, 7, '2022-04-13');
+INSERT INTO `data_pelapor` (`id`, `penyidik`, `nama_tersangka`, `pasal`, `jpu`, `kasi`, `aspidum`, `tgl`, `status`) VALUES
+	(1, 7, 'Asrul', '30 ayat 1', 3, 4, 3, '2022-04-07', 'y'),
+	(2, 1, 'jamet', 'pasl 31', 3, 4, 3, '2022-04-12', 'n'),
+	(6, 3, 'asri', '32', 3, 4, 7, '2022-04-23', 'n');
 /*!40000 ALTER TABLE `data_pelapor` ENABLE KEYS */;
 
 -- Dumping structure for table ready.instansi
