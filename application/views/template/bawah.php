@@ -66,10 +66,14 @@
 <script src="<?= base_url() ?>assets/js/demo-12.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="<?= base_url() ?>assets/js/select2.min.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>assets/js/dataTables.bootstrap4.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
+        $('#example').DataTable();
     });
 </script>
 

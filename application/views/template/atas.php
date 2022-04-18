@@ -29,6 +29,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/dataTables.bootstrap4.min.css">
 
     <link href="<?= base_url() ?>assets/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -97,7 +98,8 @@
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="<?= base_url() ?>assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <?php $id = $this->session->userdata('email'); ?>
+                                    <span><?= $id; ?></span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -107,7 +109,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="auth-normal-sign-in.html">
+                                        <a href="<?= base_url() ?>user/logout">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>

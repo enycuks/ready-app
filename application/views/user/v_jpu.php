@@ -36,15 +36,9 @@
 
                                 </div>
                                 <div class="card-block">
-                                    <h4 class="sub-title">Data SPDP</h4>
-                                    <a href="<?= base_url() ?>spdp/add" class="btn btn-info btn-sm"> Tambah </a><br>
-                                    <br>
+
                                     <?php if ($this->session->flashdata('flash')) : ?> <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            Selamat <strong>SPDP</strong> <?= $this->session->flashdata('flash'); ?>.
-                                        </div>
-                                    <?php endif; ?>
-                                    <?php if ($this->session->flashdata('flash_email')) : ?> <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            Selamat <strong>SPDP</strong> <?= $this->session->flashdata('flash_email'); ?>
+                                            Selamat <strong>Proses SPDP</strong> Telah Diproses <?= $this->session->flashdata('flash'); ?>.
                                         </div>
                                     <?php endif; ?>
                                     <br>
@@ -55,7 +49,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Tersangka</th>
-                                                        <th>JPU</th>
+                                                        <th>Pasal</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -65,16 +59,10 @@
                                                         <tr>
                                                             <th scope="row"><?= $no++ ?></th>
                                                             <td><?= $value['nama_tersangka'] ?></td>
-                                                            <td><?= $value['nama'] ?></td>
+                                                            <td><?= $value['pasal'] ?></td>
                                                             <td>
-                                                                <a href="<?= base_url() ?>send_email/index/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                    <i class="ti-email"></i>
-                                                                </a>
-                                                                <a href="<?= base_url() ?>spdp/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
-                                                                    <i class="icofont icofont-pencil-alt-5"></i>
-                                                                </a>
-                                                                <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>spdp/delete/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
-                                                                    <i class="icofont icofont-trash"></i>
+                                                                <a href="<?= base_url() ?>user/p1/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                    <i class="ti-share"></i>
                                                                 </a>
                                                             </td>
                                                         </tr>
