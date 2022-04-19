@@ -50,6 +50,7 @@
                                                         <th>#</th>
                                                         <th>Nama Tersangka</th>
                                                         <th>Pasal</th>
+                                                        <th>Tanggal Masuk</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -60,6 +61,7 @@
                                                             <th scope="row"><?= $no++ ?></th>
                                                             <td><?= $value['nama_tersangka'] ?></td>
                                                             <td><?= $value['pasal'] ?></td>
+                                                            <td><?= date("d/m/Y", strtotime($value['tgl'])); ?></td>
                                                             <td>
                                                                 <a href="<?= base_url() ?>user/p1/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                     <i class="ti-share"></i>

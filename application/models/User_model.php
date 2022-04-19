@@ -6,6 +6,7 @@ class User_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('data_pelapor');
+        $this->db->order_by('tgl', 'DESC');
         $this->db->where('data_pelapor.jpu', $id);
         $query = $this->db->get();
         return $query->result_array();

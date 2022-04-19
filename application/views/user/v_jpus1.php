@@ -106,7 +106,7 @@
                                             </div>
                                         <?php endif; ?>
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                                        <button type="reset" class="btn btn-danger btn-sm">Batal</button>
+                                        <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
                                     </form>
 
                                 </div>
