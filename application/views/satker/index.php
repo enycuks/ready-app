@@ -60,10 +60,10 @@
                                                         <tr>
                                                             <th scope="row"><?= $no++ ?></th>
                                                             <td><?= $value['satker'] ?></td>
-                                                            <td><a href="<?= base_url() ?>satker/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
+                                                            <td><a href="<?= base_url() ?>satker/update/<?= $value['id_satker']; ?>" class="btn btn-success btn-sm">
                                                                     <i class="icofont icofont-pencil-alt-5"></i>
                                                                 </a>
-                                                                <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>satker/delete/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
+                                                                <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>satker/delete/<?= $value['id_satker']; ?>" class="btn btn-danger btn-sm">
                                                                     <i class="icofont icofont-trash"></i>
                                                                 </a>
                                                             </td>

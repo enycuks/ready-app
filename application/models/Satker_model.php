@@ -5,7 +5,7 @@ class Satker_model extends CI_model
     public function tambah()
     {
         $data = [
-            "satker" => $this->input->post('satker', true),
+            "satker" => $this->input->post('nama', true),
         ];
 
         $this->db->insert('satker_jaksa', $data);
@@ -14,12 +14,12 @@ class Satker_model extends CI_model
     public function edit()
     {
         $data = [
-            "satker" => $this->input->post('satker', true),
+            "satker" => $this->input->post('nama', true),
         ];
 
         $id = $this->input->post('id');
 
-        $this->db->where('id', $id);
+        $this->db->where('id_satker', $id);
         $this->db->update('satker_jaksa', $data);
     }
 
@@ -27,7 +27,7 @@ class Satker_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('satker_jaksa');
-        $this->db->where('satker_jaksa.id', $id);
+        $this->db->where('satker_jaksa.id_satker', $id);
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -39,7 +39,7 @@ class Satker_model extends CI_model
 
     public function hapus($id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('jaksa');
+        $this->db->where('id_satker', $id);
+        $this->db->delete('satker_jaksa');
     }
 }

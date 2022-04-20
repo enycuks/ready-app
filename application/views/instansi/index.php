@@ -62,10 +62,10 @@
                                                             <th scope="row"><?= $no++ ?></th>
                                                             <td><?= $value['nama'] ?></td>
                                                             <td><?= $value['no_hp'] ?></td>
-                                                            <td><a href="<?= base_url() ?>instansi/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
+                                                            <td><a href="<?= base_url() ?>instansi/update/<?= $value['id_instansi']; ?>" class="btn btn-success btn-sm">
                                                                     <i class="icofont icofont-pencil-alt-5"></i>
                                                                 </a>
-                                                                <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>instansi/delete/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
+                                                                <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>instansi/delete/<?= $value['id_instansi']; ?>" class="btn btn-danger btn-sm">
                                                                     <i class="icofont icofont-trash"></i>
                                                                 </a>
                                                             </td>

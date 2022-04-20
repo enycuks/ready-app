@@ -24,7 +24,7 @@ class Satker extends CI_Controller
             $this->load->view('satker/tambah');
             $this->load->view('template/bawah');
         } else {
-            $this->satker_model->tambah();
+            $this->Satker_model->tambah();
             $this->session->set_flashdata('flash', 'Ditambah');
             redirect('satker');
         }
@@ -32,14 +32,14 @@ class Satker extends CI_Controller
 
     public function update($id)
     {
-        $data['satker'] = $this->satker_model->getSatkerById($id);
+        $data['satker'] = $this->Satker_model->getSatkerById($id);
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
             $this->load->view('satker/edit', $data);
             $this->load->view('template/bawah');
         } else {
-            $this->satker_model->edit();
+            $this->Satker_model->edit();
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('satker');
         }
@@ -47,7 +47,7 @@ class Satker extends CI_Controller
 
     public function delete($id)
     {
-        $this->satker_model->hapus($id);
+        $this->Satker_model->hapus($id);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('satker');
     }

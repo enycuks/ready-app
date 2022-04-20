@@ -6,43 +6,55 @@ class Jaksa_model extends CI_model
     {
         $data = [
             "nama" => $this->input->post('nama', true),
-            "email" => $this->input->post('email', true)
+            "nip" => $this->input->post('nip', true),
+            "jabatan" => $this->input->post('jabatan', true),
+            "satker" => $this->input->post('satker', true),
+            "email" => $this->input->post('email', true),
+            "no_hp" => $this->input->post('hp', true),
+            "password" => $this->input->post('password', true),
+            "role" => $this->input->post('role', true)
         ];
 
-        $this->db->insert('jaksa', $data);
+        $this->db->insert('user', $data);
     }
 
     public function edit()
     {
         $data = [
             "nama" => $this->input->post('nama', true),
-            "email" => $this->input->post('email', true)
+            "nip" => $this->input->post('nip', true),
+            "jabatan" => $this->input->post('jabatan', true),
+            "satker" => $this->input->post('satker', true),
+            "email" => $this->input->post('email', true),
+            "no_hp" => $this->input->post('hp', true),
+            "password" => $this->input->post('password', true),
+            "role" => $this->input->post('role', true)
         ];
 
         $id = $this->input->post('id');
 
-        $this->db->where('id', $id);
-        $this->db->update('jaksa', $data);
+        $this->db->where('id_user', $id);
+        $this->db->update('user', $data);
     }
 
     public function getJaksaById($id)
     {
         $this->db->select('*');
-        $this->db->from('jaksa');
-        $this->db->where('jaksa.id', $id);
+        $this->db->from('user');
+        $this->db->where('user.id_user', $id);
         $query = $this->db->get();
         return $query->row_array();
     }
 
     public function getAllJaksa()
     {
-        return $this->db->get('data_pelapor')->result_array();
+        return $this->db->get('user')->result_array();
     }
 
 
     public function hapus($id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('jaksa');
+        $this->db->where('id_user', $id);
+        $this->db->delete('user');
     }
 }

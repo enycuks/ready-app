@@ -10,8 +10,8 @@
                             <div class="page-header-title">
                                 <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
                                 <div class="d-inline">
-                                    <h4>JAKSA</h4>
-                                    <span>Data - Data Jaksa</span>
+                                    <h4>SATKER</h4>
+                                    <span>Tambah Data Satker</span>
                                 </div>
                             </div>
                         </div>
@@ -36,18 +36,12 @@
 
                                 </div>
                                 <div class="card-block">
-                                    <h4 class="sub-title">Tambah Data Jaksa</h4>
+                                    <h4 class="sub-title">Tambah Data Satker</h4>
                                     <form method="POST" action="">
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Jaksa</label>
+                                            <label class="col-sm-2 col-form-label">Nama Satker</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Jaksa" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control" name="email" placeholder="Email Jaksa" required>
+                                                <input type="text" class="form-control" name="nama" placeholder="Nama Satker" required>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>

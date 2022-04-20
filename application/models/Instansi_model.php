@@ -21,7 +21,7 @@ class Instansi_model extends CI_model
 
         $id = $this->input->post('id');
 
-        $this->db->where('id', $id);
+        $this->db->where('id_instansi', $id);
         $this->db->update('instansi', $data);
     }
 
@@ -29,7 +29,7 @@ class Instansi_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('instansi');
-        $this->db->where('instansi.id', $id);
+        $this->db->where('instansi.id_instansi', $id);
         $query = $this->db->get();
         return $query->row_array();
     }

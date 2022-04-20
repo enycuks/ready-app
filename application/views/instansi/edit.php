@@ -41,7 +41,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Instansi</label>
                                             <div class="col-sm-10">
-                                                <input type="hidden" class="form-control" name="id" value="<?= $instansi['id'] ?>">
+                                                <input type="hidden" class="form-control" name="id" value="<?= $instansi['id_instansi'] ?>">
                                                 <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Instansi" value="<?= $instansi['nama'] ?>" required>
                                             </div>
                                         </div>
