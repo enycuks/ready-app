@@ -67,7 +67,7 @@
                                                             <td><?= $value['nama_tersangka'] ?></td>
                                                             <td><?= $value['nama'] ?></td>
                                                             <td>
-                                                                <a href="<?= base_url() ?>send_email/index/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                <a href="<?= base_url() ?>send_email/awal/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                     <i class="ti-email"></i>
                                                                 </a>
                                                                 <a href="<?= base_url() ?>spdp/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">

@@ -45,7 +45,7 @@
                                                     <option value="">--Pilih Penyidik--</option>
                                                     <?php
                                                     foreach ($penyidik as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>"><?= $val['nama'] ?></option>
+                                                        <option value="<?= $val['id_instansi'] ?>"><?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -98,7 +98,19 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Koordinator</label>
+                                            <div class="col-sm-10">
+                                                <select class="js-example-basic-single" name="koor" required>
+                                                    <option value="">--Pilih Koordinator--</option>
+                                                    <?php
+                                                    foreach ($koor as $val) : ?>
+                                                        <option value="<?= $val['id_user'] ?>"><?= $val['nama'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                                         <button type="reset" class="btn btn-danger btn-sm">Batal</button>
                                     </form>
 

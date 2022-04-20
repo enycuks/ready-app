@@ -29,6 +29,7 @@ class User extends CI_Controller
                 $data = array(
                     'authenticated' => true, // Buat session authenticated dengan value true
                     'id_user' => $user['id_user'],
+                    'nama' => $user['nama'],
                     'email' => $user['email']
                 );
 
@@ -68,8 +69,52 @@ class User extends CI_Controller
             $this->load->view('template/bawah');
         } else {
             $this->User_model->ps1();
-            $this->session->set_flashdata('flash', 'DiProses');
-            redirect('user/jpu');
+            $this->Spdp_model->s1tgl($id);
+            // Konfigurasi email
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+                'smtp_pass'   => 'HiuPutih241',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
+
+            // Email dan nama pengirim
+            $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.s1 AS sts, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor WHERE pelapor.id = '$id'");
+            $row = $sql->row_array();
+
+            $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+            // echo $isi;
+
+            // Email penerima
+            $this->email->to($isi); // Ganti dengan email tujuan
+
+            // Subject email
+            $this->email->subject('SPDP Baru');
+
+            $isi = "SPDP Tahap 1 Atas " .  $row['tsk'] . " Sudah Lengkap";
+
+            // Isi email
+            $this->email->message($isi);
+
+            // Tampilkan pesan sukses atau error
+            if ($this->email->send()) {
+                $this->Spdp_model->s1tgl($id);
+                $this->session->set_flashdata('flash', 'DiProses');
+                redirect('user/jpu');
+            } else {
+                echo 'Error! email tidak dapat dikirim.';
+            }
         }
     }
 }

@@ -98,7 +98,7 @@
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="<?= base_url() ?>assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <?php $id = $this->session->userdata('email'); ?>
+                                    <?php $id = $this->session->userdata('nama'); ?>
                                     <span><?= $id; ?></span>
                                     <i class="ti-angle-down"></i>
                                 </a>

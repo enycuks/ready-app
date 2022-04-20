@@ -80,7 +80,7 @@
                                             </label>
                                             <div class="col-sm-8">
                                                 <select class="form-control" name="status" required>
-                                                    <option value="n" <?php if ($spdp['sts'] == 'n') {
+                                                    <option value="" <?php if ($spdp['sts'] == 'n') {
                                                                             echo 'selected';
                                                                         } ?>> Belum </option>
                                                     <option value="y" <?php if ($spdp['sts'] == 'y') {

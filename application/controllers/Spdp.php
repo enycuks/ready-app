@@ -22,6 +22,7 @@ class Spdp extends CI_Controller
         $data['jpu'] = $this->Spdp_model->getJPU();
         $data['kasi'] = $this->Spdp_model->getKASI();
         $data['aspidum'] = $this->Spdp_model->getASPIDUM();
+        $data['koor'] = $this->Spdp_model->getKoor();
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
@@ -40,6 +41,8 @@ class Spdp extends CI_Controller
         $data['penyidik'] = $this->Spdp_model->getPenyidik();
         $data['jpu'] = $this->Spdp_model->getJPU();
         $data['kasi'] = $this->Spdp_model->getKASI();
+        $data['aspidum'] = $this->Spdp_model->getASPIDUM();
+        $data['koor'] = $this->Spdp_model->getKoor();
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');

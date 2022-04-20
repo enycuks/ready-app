@@ -46,9 +46,9 @@
                                                     <option value="">--Pilih Penyidik--</option>
                                                     <?php
                                                     foreach ($penyidik as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>" <?php if ($val['id'] == $spdp['penyidik']) {
-                                                                                                echo "selected";
-                                                                                            } ?>> <?= $val['nama'] ?></option>
+                                                        <option value="<?= $val['id_instansi'] ?>" <?php if ($val['id_instansi'] == $spdp['penyidik']) {
+                                                                                                        echo "selected";
+                                                                                                    } ?>> <?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -72,9 +72,9 @@
                                                     <option value="">--Pilih JPU--</option>
                                                     <?php
                                                     foreach ($jpu as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>" <?php if ($val['id'] == $spdp['jpu']) {
-                                                                                                echo "selected";
-                                                                                            } ?>> <?= $val['nama'] ?></option>
+                                                        <option value="<?= $val['id_user'] ?>" <?php if ($val['id_user'] == $spdp['jpu']) {
+                                                                                                    echo "selected";
+                                                                                                } ?>> <?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -86,9 +86,9 @@
                                                     <option value="">--Pilih KASI--</option>
                                                     <?php
                                                     foreach ($kasi as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>" <?php if ($val['id'] == $spdp['kasi']) {
-                                                                                                echo "selected";
-                                                                                            } ?>> <?= $val['nama'] ?></option>
+                                                        <option value="<?= $val['id_user'] ?>" <?php if ($val['id_user'] == $spdp['kasi']) {
+                                                                                                    echo "selected";
+                                                                                                } ?>> <?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -99,16 +99,30 @@
                                                 <select class="js-example-basic-single" name="aspidum" required>
                                                     <option value="">--Pilih ASPIDUM--</option>
                                                     <?php
-                                                    foreach ($jpu as $val) : ?>
-                                                        <option value="<?= $val['id'] ?>" <?php if ($val['id'] == $spdp['aspidum']) {
-                                                                                                echo "selected";
-                                                                                            } ?>> <?= $val['nama'] ?></option>
+                                                    foreach ($aspidum as $val) : ?>
+                                                        <option value="<?= $val['id_user'] ?>" <?php if ($val['id_user'] == $spdp['aspidum']) {
+                                                                                                    echo "selected";
+                                                                                                } ?>> <?= $val['nama'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Koordinator</label>
+                                            <div class="col-sm-10">
+                                                <select class="js-example-basic-single" name="koor" required>
+                                                    <option value="">--Pilih Koordinator--</option>
+                                                    <?php
+                                                    foreach ($koor as $val) : ?>
+                                                        <option value="<?= $val['id_user'] ?>" <?php if ($val['id_user'] == $spdp['koor']) {
+                                                                                                    echo "selected";
+                                                                                                } ?>> <?= $val['nama'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                                        <button type="reset" class="btn btn-danger btn-sm">Batal</button>
+                                        <a href="<?= base_url() ?>spdp/index" type="reset" class="btn btn-danger btn-sm">Kembali</a>
                                     </form>
 
                                 </div>

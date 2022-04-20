@@ -14,7 +14,7 @@ class Spdp_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('user');
-        $this->db->where('user.role', '3');
+        $this->db->where('user.role', '7');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -23,7 +23,7 @@ class Spdp_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('user');
-        $this->db->where('user.role', '6');
+        $this->db->where('user.role', '4');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -32,7 +32,16 @@ class Spdp_model extends CI_model
     {
         $this->db->select('*');
         $this->db->from('user');
-        $this->db->where('user.role', '4');
+        $this->db->where('user.role', '6');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getKoor()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('user.role', '5');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -46,7 +55,8 @@ class Spdp_model extends CI_model
             "jpu" => $this->input->post('jpu', true),
             "kasi" => $this->input->post('kasi', true),
             "aspidum" => $this->input->post('aspidum', true),
-            "status" => "n"
+            "koor" => $this->input->post('koor', true),
+            "s1" => "n"
         ];
 
         $this->db->insert('data_pelapor', $data);
@@ -101,6 +111,16 @@ class Spdp_model extends CI_model
         $now = date('Y-m-d');
         $data = [
             "tgl" => $now
+        ];
+        $this->db->update('data_pelapor', $data);
+    }
+
+    public function s1tgl($id)
+    {
+        $this->db->where('id', $id);
+        $now = date('Y-m-d');
+        $data = [
+            "s1_tgl" => $now
         ];
         $this->db->update('data_pelapor', $data);
     }
