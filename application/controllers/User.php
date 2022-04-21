@@ -103,12 +103,20 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('SPDP Baru');
 
-            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Penyidik : "
-                . $row['nama_penyidik'] .
-                ", Nama Tersangka : "
-                . $row['tsk'] .
-                ", Pasal : " . $row['pasal'] .
-                ", Nama JPU : " . $row['nama_jpu'] . "";
+            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Dengan Rincian : 
+            " . "<br>" .
+                "Penyidik : "
+                . $row['nama_penyidik'] . "
+            " . "<br>" .
+                "Nama Tersangka : "
+                . $row['tsk'] . ".
+            " . "<br>" .
+                "Pasal : " . $row['pasal'] . " .
+            " . "<br>" .
+                " Nama JPU : " . $row['nama_jpu'] . "";
+
+            // Isi email
+            $this->email->message($isi1);
 
             // Isi email
             $this->email->message($isi1);
@@ -133,8 +141,7 @@ class User extends CI_Controller
             $this->load->view('user/v_jpus17', $data);
             $this->load->view('template/bawah');
         } else {
-            $this->User_model->ps1();
-            $this->Spdp_model->s1tgl($id);
+            $this->User_model->sp17();
             // Konfigurasi email
             $config = [
                 'mailtype'  => 'html',
@@ -155,7 +162,13 @@ class User extends CI_Controller
             // Email dan nama pengirim
             $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
-            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE pelapor.id = '$id'");
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor 
+            INNER JOIN user AS j ON j.id_user = pelapor.jpu 
+            INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
+            INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
+            INNER JOIN user AS k ON k.id_user = pelapor.koor 
+            INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            WHERE pelapor.id = '$id'");
             $row = $sql->row_array();
 
             $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
@@ -165,21 +178,27 @@ class User extends CI_Controller
             $this->email->to($isi); // Ganti dengan email tujuan
 
             // Subject email
-            $this->email->subject('SPDP Baru');
+            $this->email->subject('SPDP Status');
 
-            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Penyidik : "
-                . $row['nama_penyidik'] .
-                ", Nama Tersangka : "
-                . $row['tsk'] .
-                ", Pasal : " . $row['pasal'] .
-                ", Nama JPU : " . $row['nama_jpu'] . "";
+            $isi1 = "Terbikan P-17 Dengan Rincian : 
+                    " . "<br>" .
+                "Penyidik : "
+                . $row['nama_penyidik'] . "
+                    " . "<br>" .
+                "Nama Tersangka : "
+                . $row['tsk'] . ".
+                    " . "<br>" .
+                "Pasal : " . $row['pasal'] . " .
+                    " . "<br>" .
+                "Status P17 : " . $row['p17'] . "
+                    " . "<br>" .
+                " Nama JPU : " . $row['nama_jpu'] . "";
 
             // Isi email
             $this->email->message($isi1);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
-                $this->Spdp_model->s1tgl($id);
                 $this->session->set_flashdata('flash', 'DiProses');
                 redirect('user/jpu');
             } else {

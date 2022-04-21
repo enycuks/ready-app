@@ -42,6 +42,16 @@ class User_model extends CI_model
         $this->db->update('data_pelapor', $data);
     }
 
+    public function sp17()
+    {
+        $data = [
+            "p17" => $this->input->post('p17', true)
+        ];
+        $id = $this->input->post('id');
+        $this->db->where('id', $id);
+        $this->db->update('data_pelapor', $data);
+    }
+
     public function getPenyidik()
     {
         $this->db->select('*');

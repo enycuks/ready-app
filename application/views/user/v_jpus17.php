@@ -97,13 +97,9 @@
                                                     <label class="col-sm-4 col-form-label">TERBITKAN P-17 ?
                                                     </label>
                                                     <div class="col-sm-8">
-                                                        <select class="form-control" name="status" required>
-                                                            <option value="n" <?php if ($spdp['sts'] == 'n') {
-                                                                                    echo 'selected';
-                                                                                } ?>> Belum </option>
-                                                            <option value="y" <?php if ($spdp['sts'] == 'y') {
-                                                                                    echo 'selected';
-                                                                                } ?>> Sudah </option>
+                                                        <select class="form-control" name="p17" required>
+                                                            <option value="n"> Belum </option>
+                                                            <option value="y"> Sudah </option>
                                                         </select>
                                                     </div>
                                                 </div>
