@@ -18,7 +18,7 @@ class Satker extends CI_Controller
 
     public function add()
     {
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
+       $this->form_validation->set_rules('nama', 'Nama', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
             $this->load->view('satker/tambah');
@@ -33,7 +33,7 @@ class Satker extends CI_Controller
     public function update($id)
     {
         $data['satker'] = $this->Satker_model->getSatkerById($id);
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Satker', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
             $this->load->view('satker/edit', $data);

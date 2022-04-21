@@ -14,7 +14,7 @@ class User_model extends CI_model
 
     public function getSpdpById($id)
     {
-        $this->db->select('pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS psl, pelapor.s1 AS sts, pelapor.penyidik AS penyidik, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp,pelapor.koor AS koor, j.nama AS jp_nama, ksi.nama AS ks_nama, asp.nama AS asp_nama, pyd.nama AS pyd_nama, k.nama AS k_nama');
+        $this->db->select('pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS psl, pelapor.tgl AS tgl, pelapor.s1_tgl AS s1_tgl, pelapor.s1 AS sts, pelapor.penyidik AS penyidik, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp,pelapor.koor AS koor, j.nama AS jp_nama, ksi.nama AS ks_nama, asp.nama AS asp_nama, pyd.nama AS pyd_nama, k.nama AS k_nama');
         $this->db->from('data_pelapor AS pelapor');
 
         $this->db->join('instansi AS pyd', 'pyd.id_instansi = pelapor.penyidik');

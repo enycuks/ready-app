@@ -48,7 +48,11 @@ class Jaksa_model extends CI_model
 
     public function getAllJaksa()
     {
-        return $this->db->get('user')->result_array();
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('satker_jaksa', 'satker_jaksa.id_satker = user.satker');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
 

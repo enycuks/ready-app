@@ -30,6 +30,7 @@ class User extends CI_Controller
                     'authenticated' => true, // Buat session authenticated dengan value true
                     'id_user' => $user['id_user'],
                     'nama' => $user['nama'],
+                    'file' => $user['file'],
                     'email' => $user['email']
                 );
 
@@ -90,7 +91,7 @@ class User extends CI_Controller
             // Email dan nama pengirim
             $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
-            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.s1 AS sts, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor WHERE pelapor.id = '$id'");
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE pelapor.id = '$id'");
             $row = $sql->row_array();
 
             $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
@@ -102,10 +103,79 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('SPDP Baru');
 
-            $isi = "SPDP Tahap 1 Atas " .  $row['tsk'] . " Sudah Lengkap";
+            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Penyidik : "
+                . $row['nama_penyidik'] .
+                ", Nama Tersangka : "
+                . $row['tsk'] .
+                ", Pasal : " . $row['pasal'] .
+                ", Nama JPU : " . $row['nama_jpu'] . "";
 
             // Isi email
-            $this->email->message($isi);
+            $this->email->message($isi1);
+
+            // Tampilkan pesan sukses atau error
+            if ($this->email->send()) {
+                $this->Spdp_model->s1tgl($id);
+                $this->session->set_flashdata('flash', 'DiProses');
+                redirect('user/jpu');
+            } else {
+                echo 'Error! email tidak dapat dikirim.';
+            }
+        }
+    }
+
+    public function p17($id)
+    {
+        $data['spdp'] = $this->User_model->getSpdpById($id);
+        $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('template/atas');
+            $this->load->view('user/v_jpus17', $data);
+            $this->load->view('template/bawah');
+        } else {
+            $this->User_model->ps1();
+            $this->Spdp_model->s1tgl($id);
+            // Konfigurasi email
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+                'smtp_pass'   => 'HiuPutih241',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
+
+            // Email dan nama pengirim
+            $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE pelapor.id = '$id'");
+            $row = $sql->row_array();
+
+            $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+            // echo $isi;
+
+            // Email penerima
+            $this->email->to($isi); // Ganti dengan email tujuan
+
+            // Subject email
+            $this->email->subject('SPDP Baru');
+
+            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Penyidik : "
+                . $row['nama_penyidik'] .
+                ", Nama Tersangka : "
+                . $row['tsk'] .
+                ", Pasal : " . $row['pasal'] .
+                ", Nama JPU : " . $row['nama_jpu'] . "";
+
+            // Isi email
+            $this->email->message($isi1);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {

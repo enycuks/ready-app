@@ -263,7 +263,71 @@ class Send_email extends CI_Controller
         } else {
             echo "Tidak ada selisih 20 hari";
         }
+        //H+25
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl, pelapor.nama_tersangka AS tsk, pelapor.s1 AS s1, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email,
+
+           DATEDIFF(tgl, CURDATE())
+           FROM data_pelapor AS pelapor
+   
+           INNER JOIN user AS j ON j.id_user = pelapor.jpu 
+           INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
+           INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
+           INNER JOIN user AS k ON k.id_user = pelapor.koor
+   
+           WHERE DATEDIFF(tgl, CURDATE())=25");
+        $cek_nim = $sql->num_rows();
+        if ($cek_nim > 0) {
+
+            foreach ($sql->result_array() as $u) {
+                $selisih = $u['s1'];
+                if ($selisih == "n") {
+                    echo "ada selisih 25 hari";
+                    // Konfigurasi email
+                    $config = [
+                        'mailtype'  => 'html',
+                        'charset'   => 'utf-8',
+                        'protocol'  => 'smtp',
+                        'smtp_host' => 'smtp.gmail.com',
+                        'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+                        'smtp_pass'   => 'HiuPutih241',  // Password gmail
+                        'smtp_crypto' => 'ssl',
+                        'smtp_port'   => 465,
+                        'crlf'    => "\r\n",
+                        'newline' => "\r\n"
+                    ];
+
+                    // Load library email dan konfigurasinya
+                    $this->load->library('email', $config);
+
+                    // Email dan nama pengirim
+                    $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+
+                    // Email penerima
+                    $isi = $u['jp_email'] . ", " . $u['ks_email'] . ", " . $u['asp_email'] . ", " . $u['k_email'];
+                    // echo $isi;
+                    $this->email->to($isi); // Ganti dengan email tujuan
+
+                    // Subject email
+                    $this->email->subject('Mohon Tindak Lanjut SPDP');
+
+                    $isi = "Mohon Periksa Aplikasi Ada SPDP Baru Atas Nama " .  $u['tsk'];
+
+                    // Isi email
+                    $this->email->message($isi);
+
+                    // Tampilkan pesan sukses atau error
+                    if ($this->email->send()) {
+                        echo 'Berhasil! email terkirim.';
+                    } else {
+                        echo 'Error! email tidak dapat dikirim.';
+                    }
+                }
+            }
+        } else {
+            echo "Tidak ada selisih 25 hari";
+        }
     }
+
 
     public function awal($id)
     {
@@ -297,10 +361,10 @@ class Send_email extends CI_Controller
         $this->email->to($isi); // Ganti dengan email tujuan
 
         // Subject email
-        $this->email->subject('SPDP NBaru');
+        $this->email->subject('SPDP Baru');
 
         // Isi email
-        $this->email->message("Mohon Periksa Aplikasi Ada SPDP Baru");
+        $this->email->message("Ada SPDP Baru, Agar Segera Dicek Pada Dashboard sippakk.com");
 
         // Tampilkan pesan sukses atau error
         if ($this->email->send()) {
@@ -346,7 +410,7 @@ class Send_email extends CI_Controller
         // Subject email
         $this->email->subject('SPDP Baru');
 
-        $isi = "SPDP Tahap 1 Atas " .  $row['tsk'] . "Sudah Lengkap";
+        $isi = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Penyidik " .  $row['tsk'] . ", nama Tersangka Pasal";
 
         // Isi email
         $this->email->message($isi);

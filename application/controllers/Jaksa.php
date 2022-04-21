@@ -13,7 +13,7 @@ class Jaksa extends CI_Controller
     {
         $data['jaksa'] = $this->Jaksa_model->getAllJaksa();
         $this->load->view('template/atas');
-        $this->load->view('Jaksa/index', $data);
+        $this->load->view('jaksa/index', $data);
         $this->load->view('template/bawah');
     }
 
@@ -23,9 +23,26 @@ class Jaksa extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
-            $this->load->view('Jaksa/tambah', $data);
+            $this->load->view('jaksa/tambah', $data);
             $this->load->view('template/bawah');
         } else {
+            $upload_image = $_FILES['file']['name'];
+            if ($upload_image != '') {
+                $config['file_name'] = $upload_image;
+                $config['upload_path']        = './assets/berkas';
+                $config['allowed_types']    = 'jpg|jpeg|png';
+                $config['max_size']    = '500';
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('file')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('file', $new_image);
+                } else {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->session->set_flashdata('error', $error['error']);
+                    redirect('jaksa');
+                }
+            }
             $this->Jaksa_model->tambah();
             $this->session->set_flashdata('flash', 'Ditambah');
             redirect('jaksa');
@@ -39,10 +56,24 @@ class Jaksa extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
-            $this->load->view('Jaksa/edit', $data);
+            $this->load->view('jaksa/edit', $data);
             $this->load->view('template/bawah');
         } else {
-            $this->Jaksa_model->edit();
+            
+            // cek jika ada gambar yang akan diupload
+            $upload_image = $_FILES['file']['name'];
+
+            if ($upload_image) {
+                $config['upload_path']        = './assets/berkas';
+                $config['allowed_types']    = 'jpg|jpeg|png';
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('file')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('file', $new_image);
+                } else {
+                    echo $this->upload->dispay_errors();
+                }
+            }$this->Jaksa_model->edit();
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('Jaksa');
         }

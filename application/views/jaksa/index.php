@@ -71,7 +71,25 @@
                                                             <td><?= $value['satker'] ?></td>
                                                             <td><?= $value['email'] ?></td>
                                                             <td><?= $value['no_hp'] ?></td>
-                                                            <td><?= $value['role'] ?></td>
+                                                            <td>
+                                                                
+                                                                
+                                        <?php
+                                                                if ($value['role'] == "1") echo "Admin";
+
+                                                                if ($value['role'] == "2") echo "Operator";
+
+                                                                if ($value['role'] == "3") echo "Wakajati";
+
+                                                                if ($value['role'] == "4") echo "Aspidum";
+
+                                                                if ($value['role'] == "5") echo "Kordinator";
+
+                                                                if ($value['role'] == "6") echo "Kasi";
+
+                                                                if ($value['role'] == "7") echo "JPU";
+                                                                ?>                        
+                                                            </td>
                                                             <td><a href="<?= base_url() ?>jaksa/update/<?= $value['id_user']; ?>" class="btn btn-success btn-sm">
                                                                     <i class="icofont icofont-pencil-alt-5"></i>
                                                                 </a>

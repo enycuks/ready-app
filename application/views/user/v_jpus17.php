@@ -79,14 +79,12 @@
                                             <label class="col-sm-4 col-form-label">APAKAH SUDAH TAHAP 1 ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <select class="form-control" name="status" required>
-                                                    <option value="n" <?php if ($spdp['sts'] == 'n') {
-                                                                            echo 'selected';
-                                                                        } ?>> Belum </option>
-                                                    <option value="y" <?php if ($spdp['sts'] == 'y') {
-                                                                            echo 'selected';
-                                                                        } ?>> Sudah </option>
-                                                </select>
+
+                                                <input type="text" class="form-control" name="status" value=" <?php
+                                                                                                                if ($spdp['sts'] == "n") echo "Belum";
+
+                                                                                                                if ($spdp['sts'] == "y") echo "Sudah"; ?>" required readonly>
+
                                             </div>
                                         </div>
                                         <?php
@@ -95,7 +93,7 @@
                                         $query = $this->db->query($sql);
                                         if ($query->num_rows() > 0) : ?>
                                             <?php foreach ($query->result() as $row) : ?>
-                                                <div class="form-group row">
+                                                <div class=" form-group row">
                                                     <label class="col-sm-4 col-form-label">TERBITKAN P-17 ?
                                                     </label>
                                                     <div class="col-sm-8">

@@ -62,10 +62,23 @@
                                                             <td><?= $value['nama_tersangka'] ?></td>
                                                             <td><?= $value['pasal'] ?></td>
                                                             <td><?= date("d/m/Y", strtotime($value['tgl'])); ?></td>
-                                                            <td>
-                                                                <a href="<?= base_url() ?>user/p1/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                    <i class="ti-share"></i>
-                                                                </a>
+                                                            <td><?php
+                                                                $id = $value['id'];
+                                                                $sql = "SELECT id, tgl, DATEDIFF(tgl, CURDATE()) FROM data_pelapor WHERE DATEDIFF(tgl, CURDATE())=30 && id=$id && s1='n'";
+                                                                $query = $this->db->query($sql);
+                                                                if ($query->num_rows() > 0) { ?>
+
+                                                                    <a href="<?= base_url() ?>user/p17/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
+                                                                        <i class="ti-share"></i>
+                                                                    </a>
+                                                                <?php
+                                                                } else { ?>
+                                                                    <a href="<?= base_url() ?>user/p1/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                        <i class="ti-share"></i>
+                                                                    </a>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach ?>

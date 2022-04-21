@@ -39,7 +39,7 @@
                                     <h4 class="sub-title">Edit Data Satker</h4>
                                     <form method="POST" action="">
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Nama Satker</label>
+                                            <label class="col-sm-2 col-form-label">Jaksa</label>
                                             <div class="col-sm-10">
                                                 <input type="hidden" class="form-control" name="id" value="<?= $satker['id_satker'] ?>">
                                                 <input type="text" class="form-control" name="nama" placeholder="Nama Satker" value="<?= $satker['satker'] ?>" required>

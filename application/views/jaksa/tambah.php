@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="card-block">
                                     <h4 class="sub-title">Tambah Data User</h4>
-                                    <form method="POST" action="">
+                                    <form method="POST" action="" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
@@ -98,6 +98,12 @@
                                                     <option value="6">Kasi</option>
                                                     <option value="7">JPU</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Foto Profil</label>
+                                            <div class="col-sm-10">
+                                                <input type="file" name="file" class="form-control" required>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>

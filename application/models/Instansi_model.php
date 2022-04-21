@@ -42,7 +42,7 @@ class Instansi_model extends CI_model
 
     public function hapus($id)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_instansi', $id);
         $this->db->delete('instansi');
     }
 }
