@@ -206,4 +206,234 @@ class User extends CI_Controller
             }
         }
     }
+
+    public function b1($id)
+    {
+        $data['spdp'] = $this->User_model->getSpdpById($id);
+        $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('template/atas');
+            $this->load->view('user/v_jpb1', $data);
+            $this->load->view('template/bawah');
+        } else {
+            $bks = $this->input->post('bks');
+            $this->User_model->tb1();
+            // Konfigurasi email
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+                'smtp_pass'   => 'HiuPutih241',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
+
+            // Email dan nama pengirim
+            $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor 
+            INNER JOIN user AS j ON j.id_user = pelapor.jpu 
+            INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
+            INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
+            INNER JOIN user AS k ON k.id_user = pelapor.koor 
+            INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            WHERE pelapor.id = '$id'");
+            $row = $sql->row_array();
+            $wka = 'joem.borneo.wakajati@gmail.com';
+            $isi = $wka . "," . $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+
+            // Email penerima
+            $this->email->to($isi); // Ganti dengan email tujuan
+
+            // Subject email
+            $this->email->subject('SPDP Status');
+
+            $isi1 = "Status Berkas : 
+                    " . "<br>" .
+                "Penyidik : "
+                . $row['nama_penyidik'] . "
+                    " . "<br>" .
+                "Nama Tersangka : "
+                . $row['tsk'] . ".
+                " . "<br>" .
+                "Status Berkas : "
+                . $bks . ".
+                    " . "<br>" .
+                "Pasal : " . $row['pasal'] . " .
+                    " . "<br>" .
+                " Nama JPU : " . $row['nama_jpu'] . "";
+
+            // Isi email
+            $this->email->message($isi1);
+
+            // Tampilkan pesan sukses atau error
+            if ($this->email->send()) {
+                $this->session->set_flashdata('flash', 'DiProses');
+                redirect('user/jpu');
+            } else {
+                echo 'Error! email tidak dapat dikirim.';
+            }
+        }
+    }
+
+    public function bexposes($id)
+    {
+        $data['spdp'] = $this->User_model->getSpdpById($id);
+        $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('template/atas');
+            $this->load->view('user/v_jpexposes', $data);
+            $this->load->view('template/bawah');
+        } else {
+            $t4 = $this->input->post('tempat');
+            $time = $this->input->post('waktu');
+            $this->User_model->uexposes();
+            $this->User_model->texposes();
+
+            // Konfigurasi email
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+                'smtp_pass'   => 'HiuPutih241',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
+
+            // Email dan nama pengirim
+            $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor 
+            INNER JOIN user AS j ON j.id_user = pelapor.jpu 
+            INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
+            INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
+            INNER JOIN user AS k ON k.id_user = pelapor.koor 
+            INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            WHERE pelapor.id = '$id'");
+            $row = $sql->row_array();
+            $wka = 'joem.borneo.wakajati@gmail.com';
+            $isi = $wka . "," . $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+
+            // Email penerima
+            $this->email->to($isi); // Ganti dengan email tujuan
+
+            // Subject email
+            $this->email->subject('Exposes');
+
+            $isi1 = "Exposes akan dilakukan di " . $t4 . "/ " . $time . "  : 
+                    " . "<br>" .
+                "Penyidik : "
+                . $row['nama_penyidik'] . "
+                    " . "<br>" .
+                "Nama Tersangka : "
+                . $row['tsk'] . ".
+                " . "<br>" .
+                "Pasal : " . $row['pasal'] . " .
+                    " . "<br>" .
+                " Nama JPU : " . $row['nama_jpu'] . "";
+
+            // Isi email
+            $this->email->message($isi1);
+
+            // Tampilkan pesan sukses atau error
+            if ($this->email->send()) {
+                $this->User_model->statuse($id);
+                $this->session->set_flashdata('flash', 'Pemberitahuan Exposes Sudah Terkirim');
+                redirect('user/jpu');
+            } else {
+                echo 'Error! email tidak dapat dikirim.';
+            }
+        }
+    }
+
+    public function hexposes($id)
+    {
+        $data['spdp'] = $this->User_model->getSpdpByIdn($id);
+        $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('template/atas');
+            $this->load->view('user/v_jphasile', $data);
+            $this->load->view('template/bawah');
+        } else {
+            $t4 = $this->input->post('tempat');
+            $time = $this->input->post('waktu');
+            $this->User_model->uexposes();
+            $this->User_model->texposes();
+
+            // Konfigurasi email
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+                'smtp_pass'   => 'HiuPutih241',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
+
+            // Email dan nama pengirim
+            $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor 
+            INNER JOIN user AS j ON j.id_user = pelapor.jpu 
+            INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
+            INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
+            INNER JOIN user AS k ON k.id_user = pelapor.koor 
+            INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            WHERE pelapor.id = '$id'");
+            $row = $sql->row_array();
+            $wka = 'joem.borneo.wakajati@gmail.com';
+            $isi = $wka . "," . $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+
+            // Email penerima
+            $this->email->to($isi); // Ganti dengan email tujuan
+
+            // Subject email
+            $this->email->subject('Exposes');
+
+            $isi1 = "Exposes akan dilakukan di " . $t4 . "/ " . $time . "  : 
+                    " . "<br>" .
+                "Penyidik : "
+                . $row['nama_penyidik'] . "
+                    " . "<br>" .
+                "Nama Tersangka : "
+                . $row['tsk'] . ".
+                " . "<br>" .
+                "Pasal : " . $row['pasal'] . " .
+                    " . "<br>" .
+                " Nama JPU : " . $row['nama_jpu'] . "";
+
+            // Isi email
+            $this->email->message($isi1);
+
+            // Tampilkan pesan sukses atau error
+            if ($this->email->send()) {
+                $this->User_model->statuse($id);
+                $this->session->set_flashdata('flash', 'Pemberitahuan Exposes Sudah Terkirim');
+                redirect('user/jpu');
+            } else {
+                echo 'Error! email tidak dapat dikirim.';
+            }
+        }
+    }
 }
