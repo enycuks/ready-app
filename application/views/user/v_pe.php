@@ -36,7 +36,7 @@
 
                                 </div>
                                 <div class="card-block">
-                                    <h4 class="sub-title">Exposes Proses Data SPDP</h4>
+                                    <h4 class="sub-title">Proses Data SPDP</h4>
                                     <form method="POST" action="">
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Penyidik</label>
@@ -76,37 +76,13 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Status Berkas ?
+                                            <label class="col-sm-4 col-form-label">Perlu Exposes ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" value="Ekspose" required readonly>
-                                            </div>
-                                        </div>
-                                        <br>
-
-                                        <h4 class="sub-title">Exposes</h4>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Tempat</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="tempat" value="<?= $spdp['tempat'] ?>" readonly required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Waktu</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="waktu" value="<?= $spdp['waktu'] ?>" readonly required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Hasil Exposes ?
-                                            </label>
-                                            <div class="col-sm-8">
-                                                <select name="hasil_exposes" class="form-control">
+                                                <select name="bks" class="form-control">
                                                     <option value="">--Pilih--</option>
-                                                    <option value="P-18">P-18</option>
-                                                    <option value="P-21">P-21</option>
+                                                    <option value="2">Tidak</option>
+                                                    <option value="3">Ya</option>
                                                 </select>
                                             </div>
                                         </div>

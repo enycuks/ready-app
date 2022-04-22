@@ -103,10 +103,17 @@
                                             <label class="col-sm-4 col-form-label">Hasil Exposes ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <select name="hasil_exposes" class="form-control">
-                                                    <option value="">--Pilih--</option>
-                                                    <option value="P-18">P-18</option>
-                                                    <option value="P-21">P-21</option>
+                                                <input type="text" class="form-control" name="waktu" value="P-18" readonly required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Petunjuk Sudah Di Kirim Ke Penyidik ?
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select name="p18" class="form-control" required>
+                                                    <option value="">Belum</option>
+                                                    <option value="Sudah">Sudah</option>
                                                 </select>
                                             </div>
                                         </div>

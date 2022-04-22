@@ -103,14 +103,44 @@
                                             <label class="col-sm-4 col-form-label">Hasil Exposes ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <select name="hasil_exposes" class="form-control">
+                                                <input type="text" class="form-control" name="waktu" value="P-21" readonly required>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="sub-title">Kapan Dilakukan Tahap 2 ?</h4>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Nama Kejari
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select class="js-example-basic-single" name="kejari" required>
                                                     <option value="">--Pilih--</option>
-                                                    <option value="P-18">P-18</option>
-                                                    <option value="P-21">P-21</option>
+                                                    <?php
+                                                    foreach ($kejari as $val) : ?>
+                                                        <option value="<?= $val['id_satker'] ?>" <?php if ($val['id_satker'] == $spdp['kejari']) {
+                                                                                                        echo "selected";
+                                                                                                    } ?>> <?= $val['satker'] ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Waktu Tahap 2
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" name="waktut2" value="<?= $spdp['tgl_t2'] ?>" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Apakah Sudah Tahap 2
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" name="t2" required>
+                                                    <option value="Belum"> Belum </option>
+                                                    <option value="Sudah"> Sudah </option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
                                         <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
                                     </form>

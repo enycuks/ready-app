@@ -103,11 +103,30 @@
                                             <label class="col-sm-4 col-form-label">Hasil Exposes ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <select name="hasil_exposes" class="form-control">
+                                                <input type="text" class="form-control" name="waktu" value="P-21" readonly required>
+                                            </div>
+                                        </div>
+
+                                        <h4 class="sub-title">Kapan Dilakukan Tahap 2 ?</h4>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Nama Kejari
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select class="js-example-basic-single" name="kejari" required>
                                                     <option value="">--Pilih--</option>
-                                                    <option value="P-18">P-18</option>
-                                                    <option value="P-21">P-21</option>
+                                                    <?php
+                                                    foreach ($kejari as $val) : ?>
+                                                        <option value="<?= $val['id_satker'] ?>"><?= $val['satker'] ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Waktu Tahap 2
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <input type="datetime-local" class="form-control" name="waktut2" required>
                                             </div>
                                         </div>
 
