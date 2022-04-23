@@ -19,6 +19,14 @@ class Spdp_model extends CI_model
         return $query->result_array();
     }
 
+    public function getKejari()
+    {
+        $this->db->select('*');
+        $this->db->from('satker_jaksa');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getASPIDUM()
     {
         $this->db->select('*');

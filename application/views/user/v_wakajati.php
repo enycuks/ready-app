@@ -65,64 +65,15 @@
                                                             <td>
                                                                 <?php
                                                                 $id = $value['id'];
-                                                                $sql = "SELECT id, tgl, DATEDIFF(tgl, CURDATE()) FROM data_pelapor WHERE DATEDIFF(tgl, CURDATE())=30 && id=$id &&s1='n'";
-                                                                $query = $this->db->query($sql);
-
-                                                                $sql1 = "SELECT id, s1 FROM data_pelapor WHERE  id=$id && s1='y' && berkas IS NULL";
-                                                                $query1 = $this->db->query($sql1);
-
                                                                 $sql2 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='3'";
                                                                 $query2 = $this->db->query($sql2);
-
-                                                                $sql3 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='4'";
-                                                                $query3 = $this->db->query($sql3);
-
-                                                                $sql4 = "SELECT id, tgl, hasil_exposes FROM data_pelapor WHERE  id=$id && s1='y' && hasil_exposes='P-18'";
-                                                                $query4 = $this->db->query($sql4);
-
-                                                                $sql5 = "SELECT id, tgl, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && hasil_exposes='P-21' && tgl_t2 IS NULL";
-                                                                $query5 = $this->db->query($sql5);
-
-                                                                $sql6 = "SELECT id FROM data_pelapor WHERE id=$id && s1='y' && tgl_t2 IS NOT NULL";
-                                                                $query6 = $this->db->query($sql6);
-
-                                                                if ($query->num_rows() > 0) { ?>
-                                                                    <a href="<?= base_url() ?>user/p17/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
-                                                                        <i class="ti-share"></i>
-                                                                    </a>
-                                                                <?php
-                                                                } elseif ($query1->num_rows() > 0) { ?>
-                                                                    <a href="<?= base_url() ?>user/b1/<?= $value['id']; ?>" class="btn btn-success btn-sm">
-                                                                        <i class="ti-share"></i> Berkas SUdah Lengkap
-                                                                    </a>
-                                                                <?php
-                                                                } elseif ($query2->num_rows() > 0) { ?>
+                                                                if ($query2->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/bexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">Exposes</i>
                                                                     </a>
-                                                                <?php
-                                                                } elseif ($query3->num_rows() > 0) { ?>
-                                                                    <a href="<?= base_url() ?>user/hexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                        <i class="ti-share">Hasil Exposes</i>
-                                                                    </a>
-                                                                <?php
-                                                                } elseif ($query4->num_rows() > 0) { ?>
-                                                                    <a href="<?= base_url() ?>user/p18/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                        <i class="ti-share">P-18</i>
-                                                                    </a>
-                                                                <?php
-                                                                } elseif ($query5->num_rows() > 0) { ?>
-                                                                    <a href="<?= base_url() ?>user/p21/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                        <i class="ti-share">P21</i>
-                                                                    </a>
-                                                                <?php
-                                                                } elseif ($query6->num_rows() > 0) { ?>
-                                                                    <a href="<?= base_url() ?>user/t2/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                        <i class="ti-share">T2 Sudah?</i>
-                                                                    </a>
                                                                 <?php } else { ?>
-                                                                    <a href="<?= base_url() ?>user/p1/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                        <i class="ti-share">Awal</i>
+                                                                    <a href="<?= base_url() ?>user/w1/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                        <i class="ti-share"></i>
                                                                     </a>
                                                                 <?php
                                                                 }
