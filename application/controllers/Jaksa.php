@@ -8,6 +8,8 @@ class Jaksa extends CI_Controller
         parent::__construct();
         $this->load->model('Satker_model');
         $this->load->model('Jaksa_model');
+        if (!$this->session->userdata('authenticated')) // Jika tidak ada
+            redirect('user'); // Redirect ke halaman login
     }
     public function index()
     {
@@ -29,7 +31,7 @@ class Jaksa extends CI_Controller
             $upload_image = $_FILES['file']['name'];
             if ($upload_image != '') {
                 $config['file_name'] = $upload_image;
-                $config['upload_path']        = './assets/berkas';
+                $config['upload_path']        = './assets/foto';
                 $config['allowed_types']    = 'jpg|jpeg|png';
                 $config['max_size']    = '500';
                 $this->load->library('upload', $config);
@@ -55,16 +57,16 @@ class Jaksa extends CI_Controller
         $data['satker'] = $this->Satker_model->getAllSatker();
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('template/atas');
+            $this->load->view('template/atas', $data);
             $this->load->view('jaksa/edit', $data);
             $this->load->view('template/bawah');
         } else {
-            
+
             // cek jika ada gambar yang akan diupload
             $upload_image = $_FILES['file']['name'];
 
             if ($upload_image) {
-                $config['upload_path']        = './assets/berkas';
+                $config['upload_path']        = './assets/foto';
                 $config['allowed_types']    = 'jpg|jpeg|png';
                 $this->load->library('upload', $config);
                 if ($this->upload->do_upload('file')) {
@@ -73,7 +75,8 @@ class Jaksa extends CI_Controller
                 } else {
                     echo $this->upload->dispay_errors();
                 }
-            }$this->Jaksa_model->edit();
+            }
+            $this->Jaksa_model->edit();
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('Jaksa');
         }

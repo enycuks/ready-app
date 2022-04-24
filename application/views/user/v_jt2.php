@@ -75,6 +75,8 @@
                                                 <input type="text" class="form-control" name="aspidum" value="<?= $spdp['asp_nama'] ?>" required readonly>
                                             </div>
                                         </div>
+                                        <?php
+                                        if(isset($spdp1['tempat'])  != ""):?>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Status Berkas ?
                                             </label>
@@ -82,8 +84,10 @@
                                                 <input type="text" class="form-control" value="Ekspose" required readonly>
                                             </div>
                                         </div>
+                                        <?php endif?>
                                         <br>
-
+                                        <?php
+                                        if(isset($spdp1['tempat'])  != ""):?>
                                         <h4 class="sub-title">Exposes</h4>
 
                                         <div class="form-group row">
@@ -95,7 +99,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Waktu</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="waktu" value="<?= $spdp['waktu'] ?>" readonly required>
+                                                <input type="text" class="form-control" name="waktu" value="<?= $spdp['tgl_t2'] ?>" readonly required>
                                             </div>
                                         </div>
 
@@ -106,9 +110,9 @@
                                                 <input type="text" class="form-control" name="waktu" value="P-21" readonly required>
                                             </div>
                                         </div>
-
-                                        <h4 class="sub-title">Kapan Dilakukan Tahap 2 ?</h4>
-                                        <div class="form-group row">
+                                        <?php endif?>
+                                        <h4 class="sub-title">Tahap 2 Dilakukan</h4>
+                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Nama Kejari
                                             </label>
                                             <div class="col-sm-8">
@@ -132,7 +136,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Apakah Sudah Tahap 2
+                                            <label class="col-sm-4 col-form-label">Apakah Sudah Tahap 2 ?
                                             </label>
                                             <div class="col-sm-8">
                                                 <select class="form-control" name="t2" required>
@@ -142,7 +146,7 @@
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                                        <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

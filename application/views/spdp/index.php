@@ -53,7 +53,7 @@
                                             <table id="example" class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Tersangka</th>
                                                         <th>JPU</th>
                                                         <th>Aksi</th>
@@ -67,15 +67,17 @@
                                                             <td><?= $value['nama_tersangka'] ?></td>
                                                             <td><?= $value['nama'] ?></td>
                                                             <td>
-                                                                <a href="<?= base_url() ?>send_email/awal/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                    <i class="ti-email"></i>
-                                                                </a>
-                                                                <a href="<?= base_url() ?>spdp/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
-                                                                    <i class="icofont icofont-pencil-alt-5"></i>
-                                                                </a>
-                                                                <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>spdp/delete/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
-                                                                    <i class="icofont icofont-trash"></i>
-                                                                </a>
+                                                                <?php if (!$value['tgl'] > 0) : ?>
+                                                                    <a href="<?= base_url() ?>send_email/awal/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                        <i class="ti-email"></i>
+                                                                    </a>
+                                                                    <a href="<?= base_url() ?>spdp/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
+                                                                        <i class="icofont icofont-pencil-alt-5"></i>
+                                                                    </a>
+                                                                    <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>spdp/delete/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
+                                                                        <i class="icofont icofont-trash"></i>
+                                                                    </a>
+                                                                <?php endif ?>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach ?>

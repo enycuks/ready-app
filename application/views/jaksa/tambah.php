@@ -108,6 +108,8 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                                         <button type="reset" class="btn btn-danger btn-sm">Batal</button>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
+
                                     </form>
 
                                 </div>

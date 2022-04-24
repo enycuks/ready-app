@@ -19,6 +19,15 @@ class Spdp_model extends CI_model
         return $query->result_array();
     }
 
+    public function getWAKA()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('user.role', '3');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getKejari()
     {
         $this->db->select('*');
@@ -64,6 +73,7 @@ class Spdp_model extends CI_model
             "kasi" => $this->input->post('kasi', true),
             "aspidum" => $this->input->post('aspidum', true),
             "koor" => $this->input->post('koor', true),
+            "waka" => $this->input->post('waka', true),
             "s1" => "n"
         ];
 
@@ -75,6 +85,7 @@ class Spdp_model extends CI_model
         // return $this->db->get('data_pelapor')->result_array();
         $this->db->select('*');
         $this->db->from('data_pelapor');
+        $this->db->order_by('id', 'DESC');
         $this->db->join('user', 'data_pelapor.jpu = user.id_user');
         // $this->db->join('table3', 'table1.id = table3.id');
         $query = $this->db->get();
@@ -98,6 +109,7 @@ class Spdp_model extends CI_model
             "pasal" => $this->input->post('pasal', true),
             "jpu" => $this->input->post('jpu', true),
             "kasi" => $this->input->post('kasi', true),
+            "waka" => $this->input->post('waka', true),
             "aspidum" => $this->input->post('aspidum', true)
         ];
 

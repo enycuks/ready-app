@@ -121,12 +121,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Foto Profil</label>
                                             <div class="col-sm-10">
-                                                <img src="<?= base_url() ?>assets/berkas/<?= $user['file'] ?>">
+                                                <img src="<?= base_url() ?>assets/foto/<?= $user['file'] ?>" width="100" height="100">
                                                 <input type="file" name="file" class="form-control">
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Update</button>
                                         <button type="reset" class="btn btn-danger btn-sm">Batal</button>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

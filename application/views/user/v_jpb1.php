@@ -79,17 +79,17 @@
                                             <label class="col-sm-4 col-form-label">Berkas Sudah Lengkap ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <select name="bks" class="form-control">
+                                                <select name="bks" class="form-control" required>
                                                     <option value="">--Pilih--</option>
-                                                    <option value="1">Belum</option>
-                                                    <option value="2">Sudah</option>
-                                                    <option value="3">Exposes</option>
+                                                    <option value="Belum">Belum</option>
+                                                    <option value="Sudah">Sudah</option>
+                                                    <option value="Expose">Exposes</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                                        <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

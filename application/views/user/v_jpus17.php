@@ -89,7 +89,7 @@
                                         </div>
                                         <?php
                                         $id = $spdp['id'];
-                                        $sql = "SELECT id, tgl, DATEDIFF(tgl, CURDATE()) FROM data_pelapor WHERE DATEDIFF(tgl, CURDATE())=30 && id=$id && s1='n'";
+                                        $sql = "SELECT id, tgl, DATEDIFF(CURDATE(), tgl) FROM data_pelapor WHERE DATEDIFF(CURDATE(), tgl)=-30 && id=$id && s1='n' && p17='Belum'";
                                         $query = $this->db->query($sql);
                                         if ($query->num_rows() > 0) : ?>
                                             <?php foreach ($query->result() as $row) : ?>
@@ -98,8 +98,8 @@
                                                     </label>
                                                     <div class="col-sm-8">
                                                         <select class="form-control" name="p17" required>
-                                                            <option value="n"> Belum </option>
-                                                            <option value="y"> Sudah </option>
+                                                            <option value="Belum"> Belum </option>
+                                                            <option value="Sudah"> Sudah </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -108,7 +108,7 @@
                                         ?>
 
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                                        <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

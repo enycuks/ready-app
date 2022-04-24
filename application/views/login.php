@@ -70,18 +70,17 @@
     </div>
     <!-- Pre-loader end -->
 
-    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+    <section class="login p-fixed d-flex text-center common-img-bg">
         <!-- Container-fluid starts -->
         <div class="container">
+            <img src="<?= base_url() ?>assets/images/download.png" class="img-fluid" width="250" height="250">
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
                     <div class="login-card card-block auth-body mr-auto ml-auto">
 
                         <form class="md-float-material" action="<?= base_url(); ?>user/login" method="post">
-                            <div class="text-center">
-                                <h1>Aplikasi</h1>
-                            </div>
+                            
                             <?php if ($this->session->flashdata('message')) : ?> <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     Gagal!!! <?= $this->session->flashdata('message'); ?>
                                 </div>

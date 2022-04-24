@@ -108,6 +108,20 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">WAKAJATI</label>
+                                            <div class="col-sm-10">
+                                                <select class="js-example-basic-single" name="waka" required>
+                                                    <option value="">--Pilih WAKAJATI--</option>
+                                                    <?php
+                                                    foreach ($waka as $val) : ?>
+                                                        <option value="<?= $val['id_user'] ?>" <?php if ($val['id_user'] == $spdp['waka']) {
+                                                                                                    echo "selected";
+                                                                                                } ?>> <?= $val['nama'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Koordinator</label>
                                             <div class="col-sm-10">
                                                 <select class="js-example-basic-single" name="koor" required>
@@ -122,7 +136,7 @@
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                                        <a href="<?= base_url() ?>spdp/index" type="reset" class="btn btn-danger btn-sm">Kembali</a>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

@@ -81,14 +81,14 @@
                                             <div class="col-sm-8">
                                                 <select name="bks" class="form-control">
                                                     <option value="">--Pilih--</option>
-                                                    <option value="2">Tidak</option>
-                                                    <option value="3">Ya</option>
+                                                    <option value="Sudah">Tidak</option>
+                                                    <option value="Expose">Ya</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                                        <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

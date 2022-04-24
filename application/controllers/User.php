@@ -37,8 +37,10 @@ class User extends CI_Controller
                 $this->session->set_userdata($data); // Buat session sesuai $session
                 if ($data['role'] == 3) {
                     redirect('user/waka'); // Redirect ke halaman welcome
-                } else {
+                } elseif ($data['role'] == 7) {
                     redirect('user/jpu');
+                } else {
+                    redirect('spdp');
                 }
             } else {
                 $this->session->set_flashdata('message', 'Email & Password Tidak Sesuai'); // Buat session flashdata
@@ -116,7 +118,7 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('SPDP Baru');
 
-            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Dengan Rincian : 
+            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : 
             " . "<br>" .
                 "Penyidik : "
                 . $row['nama_penyidik'] . "
@@ -364,7 +366,6 @@ class User extends CI_Controller
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
-                $this->User_model->statuse($id);
                 $this->session->set_flashdata('flash', 'Pemberitahuan Exposes Sudah Terkirim');
                 redirect('user/jpu');
             } else {
@@ -373,9 +374,86 @@ class User extends CI_Controller
         }
     }
 
+    public function wexposes($id)
+    {
+        $data['spdp'] = $this->User_model->getSpdpById($id);
+        $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('template/atas');
+            $this->load->view('user/v_wexposes', $data);
+            $this->load->view('template/bawah');
+        } else {
+            $t4 = $this->input->post('tempat');
+            $time = $this->input->post('waktu');
+            $this->User_model->uexposes();
+            $this->User_model->texposes();
+
+            // Konfigurasi email
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+                'smtp_pass'   => 'HiuPutih241',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
+
+            // Email dan nama pengirim
+            $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor 
+            INNER JOIN user AS j ON j.id_user = pelapor.jpu 
+            INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
+            INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
+            INNER JOIN user AS k ON k.id_user = pelapor.koor 
+            INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            WHERE pelapor.id = '$id'");
+            $row = $sql->row_array();
+            $wka = 'joem.borneo.wakajati@gmail.com';
+            $isi = $wka . "," . $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+
+            // Email penerima
+            $this->email->to($isi); // Ganti dengan email tujuan
+
+            // Subject email
+            $this->email->subject('Exposes');
+
+            $isi1 = "Exposes akan dilakukan di " . $t4 . "/ " . $time . "  : 
+                    " . "<br>" .
+                "Penyidik : "
+                . $row['nama_penyidik'] . "
+                    " . "<br>" .
+                "Nama Tersangka : "
+                . $row['tsk'] . ".
+                " . "<br>" .
+                "Pasal : " . $row['pasal'] . " .
+                    " . "<br>" .
+                " Nama JPU : " . $row['nama_jpu'] . "";
+
+            // Isi email
+            $this->email->message($isi1);
+
+            // Tampilkan pesan sukses atau error
+            if ($this->email->send()) {
+                $this->session->set_flashdata('flash', 'Pemberitahuan Exposes Sudah Terkirim');
+                redirect('user/waka');
+            } else {
+                echo 'Error! email tidak dapat dikirim.';
+            }
+        }
+    }
+
+
     public function hexposes($id)
     {
-        $data['spdp'] = $this->User_model->getSpdpByIdn($id);
+        $data['spdp'] = $this->User_model->getSpdpByIdh($id);
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
@@ -439,7 +517,6 @@ class User extends CI_Controller
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
-                $this->User_model->uberkase($id);
                 $this->User_model->hasile($id);
                 $this->session->set_flashdata('flash', 'Pemberitahuan Exposes Sudah Terkirim');
                 redirect('user/jpu');
@@ -451,7 +528,7 @@ class User extends CI_Controller
 
     public function p18($id)
     {
-        $data['spdp'] = $this->User_model->getSpdpByIdn($id);
+        $data['spdp'] = $this->User_model->getSpdpByIdh($id);
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
@@ -527,7 +604,7 @@ class User extends CI_Controller
 
     public function p21($id)
     {
-        $data['spdp'] = $this->User_model->getSpdpByIdn($id);
+        $data['spdp'] = $this->User_model->getSpdpById($id);
         $data['kejari'] = $this->Spdp_model->getKejari();
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
@@ -605,7 +682,7 @@ class User extends CI_Controller
 
     public function t2($id)
     {
-        $data['spdp'] = $this->User_model->getSpdpByIdnn($id);
+        $data['spdp'] = $this->User_model->getSpdpById($id);
         $data['kejari'] = $this->Spdp_model->getKejari();
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
@@ -690,7 +767,7 @@ class User extends CI_Controller
             $this->load->view('template/bawah');
         } else {
             $bks = $this->input->post('bks');
-            $this->User_model->tb1();
+            $this->User_model->tb11();
             // Konfigurasi email
             $config = [
                 'mailtype'  => 'html',
