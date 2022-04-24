@@ -65,12 +65,54 @@
                                                             <td>
                                                                 <?php
                                                                 $id = $value['id'];
-                                                                $sql2 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='3'";
+                                                                $sql2 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Belum' && jexposes = 0";
                                                                 $query2 = $this->db->query($sql2);
+
+                                                                $sql3 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && t2 = 'Sudah'";
+                                                                $query3 = $this->db->query($sql3);
+
+                                                                $sql21 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose' && jexposes = 0";
+                                                                $query21 = $this->db->query($sql21);
+
+                                                                $tidak = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Sudah' && exposes='Sudah'";
+                                                                $queryt = $this->db->query($tidak);
+
+                                                                $tidak1 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose'";
+                                                                $queryt1 = $this->db->query($tidak1);
+
+                                                                $tidak2 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose' && jexposes > 0";
+                                                                $queryt2 = $this->db->query($tidak2);
+
+                                                                $sqlwait = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='n' OR s1='y' && berkas='Proses' ";
+                                                                $wait = $this->db->query($sqlwait);
+
+                                                                $sql4 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='n' && berkas='Proses' && p17 ='Sudah' ";
+                                                                $wait4 = $this->db->query($sql4);
+                                                                
+                                                                
                                                                 if ($query2->num_rows() > 0) { ?>
-                                                                    <a href="<?= base_url() ?>user/bexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                    <a href="<?= base_url() ?>user/wexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">Exposes</i>
                                                                     </a>
+                                                                    <?php
+                                                                } elseif ($query21->num_rows() > 0) { ?>
+                                                                    <a href="<?= base_url() ?>user/wexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                        <i class="ti-share">Exposes</i>
+                                                                    <?php
+                                                                } elseif ($queryt->num_rows() > 0) { ?>
+                                                                    Selesai
+                                                                    <?php
+                                                                } elseif ($queryt2->num_rows() > 0) { ?>
+                                                                    Selesai
+                                                                    <?php
+                                                                } elseif ($query3->num_rows() > 0) { ?>
+                                                                    Selesai
+                                                                    <?php
+                                                                } elseif ($wait4->num_rows() > 0) { ?>
+                                                                    Selesai
+                                                                    <?php
+                                                                } elseif ($wait->num_rows() > 0) { ?>
+                                                                    Menunggu Proses
                                                                 <?php } else { ?>
                                                                     <a href="<?= base_url() ?>user/w1/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share"></i>

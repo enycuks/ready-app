@@ -80,7 +80,7 @@
                                             </label>
                                             <div class="col-sm-8">
                                                 <select class="form-control" name="status" required>
-                                                    <option value="n" <?php if ($spdp['sts'] == 'n') {
+                                                    <option value="" <?php if ($spdp['sts'] == 'n') {
                                                                             echo 'selected';
                                                                         } ?>> Belum </option>
                                                     <option value="y" <?php if ($spdp['sts'] == 'y') {
@@ -89,32 +89,10 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <?php
-                                        $id = $spdp['id'];
-                                        $sql = "SELECT id, tgl, DATEDIFF(tgl, CURDATE()) FROM data_pelapor WHERE DATEDIFF(tgl, CURDATE())=30 && id=$id && s1='n'";
-                                        $query = $this->db->query($sql);
-                                        if ($query->num_rows() > 0) : ?>
-                                            <?php foreach ($query->result() as $row) : ?>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-4 col-form-label">TERBITKAN P-17 ?
-                                                    </label>
-                                                    <div class="col-sm-8">
-                                                        <select class="form-control" name="status" required>
-                                                            <option value="n" <?php if ($spdp['sts'] == 'n') {
-                                                                                    echo 'selected';
-                                                                                } ?>> Belum </option>
-                                                            <option value="y" <?php if ($spdp['sts'] == 'y') {
-                                                                                    echo 'selected';
-                                                                                } ?>> Sudah </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                        <?php endforeach;
-                                        endif;
-                                        ?>
+                                        
 
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                                        <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

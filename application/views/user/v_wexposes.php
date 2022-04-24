@@ -79,7 +79,7 @@
                                             <label class="col-sm-4 col-form-label">Status Berkas ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" value="Ekspose" required readonly>
+                                                <input type="text" class="form-control" value="<?= $spdp['berkas'] ?>" required readonly>
                                             </div>
                                         </div>
                                         <br>
@@ -89,32 +89,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Tempat</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="tempat" value="<?= $spdp['tempat'] ?>" readonly required>
+                                                <input type="text" class="form-control" name="tempat" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Waktu</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="waktu" value="<?= $spdp['waktu'] ?>" readonly required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Hasil Exposes ?
-                                            </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="waktu" value="P-18" readonly required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Petunjuk Sudah Di Kirim Ke Penyidik ?
-                                            </label>
-                                            <div class="col-sm-8">
-                                                <select name="p18" class="form-control" required>
-                                                    <option value="">Belum</option>
-                                                    <option value="Sudah">Sudah</option>
-                                                </select>
+                                                <input type="datetime-local" class="form-control" name="waktu" required>
                                             </div>
                                         </div>
 

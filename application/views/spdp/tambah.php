@@ -99,6 +99,18 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">WAKAJATI</label>
+                                            <div class="col-sm-10">
+                                                <select class="js-example-basic-single" name="waka" required>
+                                                    <option value="">--Pilih WAKAJATI--</option>
+                                                    <?php
+                                                    foreach ($waka as $val) : ?>
+                                                        <option value="<?= $val['id_user'] ?>"><?= $val['nama'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Koordinator</label>
                                             <div class="col-sm-10">
                                                 <select class="js-example-basic-single" name="koor" required>
@@ -111,7 +123,7 @@
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                                        <button type="reset" class="btn btn-danger btn-sm">Batal</button>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

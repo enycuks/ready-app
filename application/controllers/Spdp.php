@@ -7,6 +7,8 @@ class Spdp extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Spdp_model');
+        if (!$this->session->userdata('authenticated')) // Jika tidak ada
+            redirect('user'); // Redirect ke halaman login
     }
     public function index()
     {
@@ -23,6 +25,7 @@ class Spdp extends CI_Controller
         $data['kasi'] = $this->Spdp_model->getKASI();
         $data['aspidum'] = $this->Spdp_model->getASPIDUM();
         $data['koor'] = $this->Spdp_model->getKoor();
+        $data['waka'] = $this->Spdp_model->getWAKA();
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');
@@ -43,6 +46,7 @@ class Spdp extends CI_Controller
         $data['kasi'] = $this->Spdp_model->getKASI();
         $data['aspidum'] = $this->Spdp_model->getASPIDUM();
         $data['koor'] = $this->Spdp_model->getKoor();
+        $data['waka'] = $this->Spdp_model->getWAKA();
         $this->form_validation->set_rules('penyidik', 'Penyidik', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('template/atas');

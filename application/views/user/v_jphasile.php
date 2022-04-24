@@ -112,7 +112,7 @@
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
-                                        <a href="<?= base_url() ?>user/jpu" type="reset" class="btn btn-danger btn-sm">Kembali</a>
+                                        <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
 
                                 </div>

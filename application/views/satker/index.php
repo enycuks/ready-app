@@ -10,7 +10,7 @@
                             <div class="page-header-title">
                                 <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
                                 <div class="d-inline">
-                                    <h4>SATUAN KERJA</h4>
+                                    <h4>SATUAN KERJA WIALAYAH HUKUM Se - KALTENG</h4>
                                     <span>Data - Data Satuan Kerja</span>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Satker</th>
                                                         <th>Aksi</th>
                                                     </tr>

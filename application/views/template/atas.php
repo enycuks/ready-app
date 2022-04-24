@@ -98,7 +98,7 @@
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <?php $file = $this->session->userdata('file'); ?>
-                                    <img src="<?= base_url() ?>assets/berkas/<?= $file; ?>" class="img-radius" alt="User-Profile-Image">
+                                    <img src="<?= base_url() ?>assets/foto/<?= $file; ?>" class="img-radius" alt="User-Profile-Image">
                                     <?php $id = $this->session->userdata('nama'); ?>
                                     <span><?= $id; ?></span>
                                     <i class="ti-angle-down"></i>
@@ -128,7 +128,7 @@
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                         <div class="pcoded-inner-navbar main-menu">
 
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
+                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Menu</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <!-- <li class="">
                                     <a href="index.html">
@@ -137,53 +137,75 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li> -->
-                                <li class="pcoded-hasmenu">
-                                    <a href="javascript:void(0)">
-                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Master Data</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>instansi">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Instansi</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
+                                <?php
+                                if ($this->session->userdata('role') == "2") :
+                                ?>
+                                    
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Master Data</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class=" ">
+                                                <a href="<?= base_url() ?>instansi">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Instansi Pelapor</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="<?= base_url() ?>jaksa">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Managemen User</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
 
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>jaksa">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">User</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
+                                            <li class=" ">
+                                                <a href="<?= base_url() ?>satker">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Satuan Kerja</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
 
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>satker">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Satker</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
+                                        </ul>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= base_url() ?>spdp">
+                                            <span class="pcoded-micon"><i class=" ti-rocket"></i></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">SPDP</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+       
+                                <?php endif ?>
+                                
+                                <!-- <?php
+                                        if ($this->session->userdata('role') != "2") :
+                                        ?>
+                                    <li class="">
+                                        <a href="<?= base_url() ?>spdp">
+                                            <span class="pcoded-micon"><i class=" ti-rocket"></i></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">SPDP</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                <?php endif ?> -->
 
-                                    </ul>
-                                </li>
-                                <!-- <li class="">
-                                    <a href="<?= base_url() ?>spdp">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li> -->
-                                <li class="">
-                                    <a href="<?= base_url() ?>spdp">
-                                        <span class="pcoded-micon"><i class=" ti-rocket"></i></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">SPDP</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
+                                <?php
+                                if ($this->session->userdata('role') == "7") :
+                                ?>
+                                    <li class="">
+                                        <a href="<?= base_url() ?>user/jpu">
+                                            <span class="pcoded-micon"><i class=" ti-rocket"></i></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">SPDP</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                <?php endif ?>
                             </ul>
 
                         </div>
