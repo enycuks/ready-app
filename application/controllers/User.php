@@ -35,7 +35,7 @@ class User extends CI_Controller
                     'email' => $user['email']
                 );
                 $this->session->set_userdata($data); // Buat session sesuai $session
-                if ($data['role'] == 3) {
+                if ($data['role'] == 4) {
                     redirect('user/waka'); // Redirect ke halaman welcome
                 } elseif ($data['role'] == 7) {
                     redirect('user/jpu');
@@ -460,7 +460,7 @@ class User extends CI_Controller
             $this->load->view('user/v_jphasile', $data);
             $this->load->view('template/bawah');
         } else {
-
+            $this->User_model->hasile($id);
             $hasil = $this->input->post('hasil_exposes');
 
             // Konfigurasi email
@@ -517,7 +517,6 @@ class User extends CI_Controller
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
-                $this->User_model->hasile($id);
                 $this->session->set_flashdata('flash', 'Pemberitahuan Exposes Sudah Terkirim');
                 redirect('user/jpu');
             } else {
@@ -612,9 +611,8 @@ class User extends CI_Controller
             $this->load->view('user/v_jp21', $data);
             $this->load->view('template/bawah');
         } else {
+            $this->User_model->t2($id);
 
-            $hasil = $this->input->post('kejari');
-            $waktu = $this->input->post('waktut2');
 
             // Konfigurasi email
             $config = [
@@ -636,15 +634,21 @@ class User extends CI_Controller
             // Email dan nama pengirim
             $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
-            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, pelapor.petunjuk AS petunjuk,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu 
-            FROM data_pelapor AS pelapor 
-            INNER JOIN user AS j ON j.id_user = pelapor.jpu 
-            INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
-            INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
-            INNER JOIN user AS k ON k.id_user = pelapor.koor 
-            INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, pelapor.petunjuk AS petunjuk,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu,
+            pelapor.kejari, sj.satker
+                        FROM data_pelapor AS pelapor 
+                        INNER JOIN user AS j ON j.id_user = pelapor.jpu 
+                        INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
+                        INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
+                        INNER JOIN user AS k ON k.id_user = pelapor.koor 
+                        INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+                        INNER JOIN satker_jaksa AS sj ON sj.id_satker = pelapor.kejari
             WHERE pelapor.id = '$id'");
             $row = $sql->row_array();
+
+            $waktu = $row['tgl_t2'];
+            $tgl = date_create($waktu);
+            $indo = date_format($tgl, 'd/m/Y H:i');
             $wka = 'joem.borneo.wakajati@gmail.com';
             $isi = $wka . "," . $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
 
@@ -654,7 +658,7 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('P-21');
 
-            $isi1 = "Tahap 2 Akan Dilakukan Di " . "$hasil" . " Pada ." . $waktu . " 
+            $isi1 = "Tahap 2 Akan Dilakukan Di " . $row['satker'] . "  Pada " . $indo . " 
                     " . "<br>" .
                 "Penyidik : "
                 . $row['nama_penyidik'] . "
@@ -671,7 +675,7 @@ class User extends CI_Controller
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
-                $this->User_model->t2($id);
+
                 $this->session->set_flashdata('flash', 'Pemberitahuan Exposes Sudah Terkirim');
                 redirect('user/jpu');
             } else {

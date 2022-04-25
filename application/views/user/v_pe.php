@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="card-block">
                                     <h4 class="sub-title">Proses Data SPDP</h4>
-                                    <form method="POST" action="">
+                                    <form method="POST" action="" id="form1" name="form1">
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Penyidik</label>
                                             <div class="col-sm-8">
@@ -79,11 +79,16 @@
                                             <label class="col-sm-4 col-form-label">Perlu Exposes ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <select name="bks" class="form-control">
-                                                    <option value="">--Pilih--</option>
-                                                    <option value="Sudah">Tidak</option>
-                                                    <option value="Expose">Ya</option>
-                                                </select>
+ <select name="bks" id="kategori" class="form-control"  onchange="tampilkan()">
+  <option value="">--Pilih--</option>
+  <option value="Sudah">Tidak</option>
+  <option value="Expose">Ya</option>
+  <label>Pilih Sub Kategori: </label> <select id="tampil" name="tampil">
+  </select>
+
+  <br/><br/>
+     <select id="exposes" name="exposes" style="visibility:hidden;">
+  </select>
                                             </div>
                                         </div>
 
@@ -104,3 +109,4 @@
         </div>
     </div>
 </div>
+

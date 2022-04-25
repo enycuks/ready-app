@@ -32,6 +32,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/dataTables.bootstrap4.min.css">
 
     <link href="<?= base_url() ?>assets/css/select2.min.css" rel="stylesheet" />
+    
+    
 </head>
 
 <body>

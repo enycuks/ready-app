@@ -17,7 +17,7 @@ class User_model extends CI_model
         $this->db->select('*');
         $this->db->from('data_pelapor');
         $this->db->order_by('tgl', 'DESC');
-        $this->db->where('data_pelapor.waka', $id);
+        $this->db->where('data_pelapor.aspidum', $id);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -69,7 +69,7 @@ class User_model extends CI_model
         $query = $this->db->get();
         return $query->row_array();
     }
-    
+
 
     public function getAllJaksa()
     {
@@ -109,7 +109,8 @@ class User_model extends CI_model
     public function tb11()
     {
         $data = [
-            "berkas" => $this->input->post('bks', true)
+            "berkas" => $this->input->post('bks', true),
+            "exposes" => $this->input->post('exposes', true)
         ];
         $id = $this->input->post('id');
         $this->db->where('id', $id);
@@ -158,7 +159,7 @@ class User_model extends CI_model
         $now = date('Y-m-d');
         $data = [
             "tgl_hasile" => $now,
-            "hasil_exposes" => $this->input->post('hasil_exposes', true),
+            "hasil_exposes" => $this->input->post('hasil_exposes', true)
         ];
         $this->db->update('data_pelapor', $data);
     }

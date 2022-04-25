@@ -16,7 +16,7 @@ class Send_email extends CI_Controller
     public function index()
     {
         //H+5
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=-5 ");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=5 ");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
             foreach ($sql->result_array() as $u) {
@@ -59,7 +59,9 @@ class Send_email extends CI_Controller
                             " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                             " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                        " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -67,17 +69,20 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 5 hari";
+            echo "<br>";
         }
 
         //H+10
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=-10");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=10");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -121,7 +126,9 @@ class Send_email extends CI_Controller
                             " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                             " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                            " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -129,17 +136,20 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 10 hari";
+            echo "<br>";
         }
 
         //H+15
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=-15");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=15");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -183,7 +193,9 @@ class Send_email extends CI_Controller
                             " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                             " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                            " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -191,17 +203,20 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 15 hari";
+            echo "<br>";
         }
 
         //H+20
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=-20");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=20");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -247,7 +262,9 @@ class Send_email extends CI_Controller
                             " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                             " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                            " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -255,17 +272,20 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 20 hari";
+            echo "<br>";
         }
 
         //H+25
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=-25");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=25");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -311,7 +331,9 @@ class Send_email extends CI_Controller
                     " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                     " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                        " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -319,16 +341,19 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 25 hari";
+            echo "<br>";
         }
         //H+30
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=-30");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=30");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -376,7 +401,9 @@ class Send_email extends CI_Controller
                     " . "<br>" .
                         "Status P17 : " . $u['p17'] . "
                     " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                    " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -384,17 +411,20 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 30 hari";
+            echo "<br>";
         }
 
         //H+31
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=-31");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.tgl AS tgl ,pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu ,DATEDIFF(CURDATE(),tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),tgl)=31");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -442,8 +472,9 @@ class Send_email extends CI_Controller
                         " . "<br>" .
                         "Status P17 : " . $u['p17'] . "
                         " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
-
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                        " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
                     // echo $isi1;
 
                     // Isi email
@@ -458,17 +489,20 @@ class Send_email extends CI_Controller
                         ];
                         $this->db->update('data_pelapor', $data);
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 31 hari";
+            echo "<br>";
         }
 
         //H+4T2
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.s1_tgl AS s1_tgl , pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal , pelapor.s1 AS sts, pelapor.penyidik as penyidik, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu , DATEDIFF(CURDATE(),s1_tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),s1_tgl)=-4 && berkas ='Proses'");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.s1_tgl AS s1_tgl , pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal , pelapor.s1 AS sts, pelapor.penyidik as penyidik, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu , DATEDIFF(CURDATE(),s1_tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),s1_tgl)=4 && berkas ='Proses'");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -514,7 +548,9 @@ class Send_email extends CI_Controller
                             " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                             " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                            " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -522,17 +558,20 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 4 hari T2";
+            echo "<br>";
         }
 
         //H+6T2
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.s1_tgl AS s1_tgl , pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal , pelapor.s1 AS sts, pelapor.penyidik as penyidik, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu , DATEDIFF(CURDATE(),s1_tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),s1_tgl)=-6 && berkas ='Proses'");
+        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.s1_tgl AS s1_tgl , pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal , pelapor.s1 AS sts, pelapor.penyidik as penyidik, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu , DATEDIFF(CURDATE(),s1_tgl) FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE DATEDIFF(CURDATE(),s1_tgl)=6 && berkas ='Proses'");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -578,7 +617,9 @@ class Send_email extends CI_Controller
                             " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                             " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                            " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -586,13 +627,16 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 6 hari T2";
+            echo "<br>";
         }
 
 
@@ -625,7 +669,7 @@ class Send_email extends CI_Controller
         INNER JOIN user AS k ON k.id_user = pelapor.koor 
         INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
         INNER JOIN satker_jaksa AS sj ON sj.id_satker = pelapor.kejari
-        WHERE DATEDIFF(CURDATE(),s1_tgl)=-8 && t2='Proses'");
+        WHERE DATEDIFF(CURDATE(),s1_tgl)=8 && t2='Proses'");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -671,7 +715,9 @@ class Send_email extends CI_Controller
                                 " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                                 " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                                " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -679,13 +725,16 @@ class Send_email extends CI_Controller
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 8 hari T2";
+            echo "<br>";
         }
 
         //H+6ST2
@@ -717,7 +766,7 @@ pelapor.id AS id,
         INNER JOIN user AS k ON k.id_user = pelapor.koor 
         INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
         INNER JOIN satker_jaksa AS sj ON sj.id_satker = pelapor.kejari
-        WHERE DATEDIFF(CURDATE(),s1_tgl)=-13 && t2='Proses'");
+        WHERE DATEDIFF(CURDATE(),s1_tgl)=13 && t2='Proses'");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -763,7 +812,9 @@ pelapor.id AS id,
                                         " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                                         " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                                        " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -771,13 +822,16 @@ pelapor.id AS id,
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 13 hari T2";
+            echo "<br>";
         }
 
         //H+20ST2
@@ -809,7 +863,7 @@ pelapor.id AS id,
         INNER JOIN user AS k ON k.id_user = pelapor.koor 
         INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
         INNER JOIN satker_jaksa AS sj ON sj.id_satker = pelapor.kejari
-        WHERE DATEDIFF(CURDATE(),s1_tgl)=-20 && t2='Proses'");
+        WHERE DATEDIFF(CURDATE(),s1_tgl)=20 && t2='Proses'");
         $cek_nim = $sql->num_rows();
         if ($cek_nim > 0) {
 
@@ -855,7 +909,9 @@ pelapor.id AS id,
                                                         " . "<br>" .
                         "Pasal : " . $u['pasal'] . " .
                                                         " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "";
+                        " Nama JPU : " . $u['nama_jpu'] . "
+                                                        " . "<br>" .
+                        "Segera Dicek Pada Dashboard sippakk.com";
 
                     // Isi email
                     $this->email->message($isi1);
@@ -863,13 +919,16 @@ pelapor.id AS id,
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
                         echo 'Berhasil! email terkirim.';
+                        echo "<br>";
                     } else {
                         echo 'Error! email tidak dapat dikirim.';
+                        echo "<br>";
                     }
                 }
             }
         } else {
             echo "Tidak ada selisih 20 hari T2";
+            echo "<br>";
         }
     }
 
@@ -921,52 +980,52 @@ pelapor.id AS id,
         }
     }
 
-    public function s1($id)
-    {
-        // Konfigurasi email
-        $config = [
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'enycuks@gmail.com',  // Email gmail
-            'smtp_pass'   => 'HiuPutih241',  // Password gmail
-            'smtp_crypto' => 'ssl',
-            'smtp_port'   => 465,
-            'crlf'    => "\r\n",
-            'newline' => "\r\n"
-        ];
+    // public function s1($id)
+    // {
+    //     // Konfigurasi email
+    //     $config = [
+    //         'mailtype'  => 'html',
+    //         'charset'   => 'utf-8',
+    //         'protocol'  => 'smtp',
+    //         'smtp_host' => 'smtp.gmail.com',
+    //         'smtp_user' => 'enycuks@gmail.com',  // Email gmail
+    //         'smtp_pass'   => 'HiuPutih241',  // Password gmail
+    //         'smtp_crypto' => 'ssl',
+    //         'smtp_port'   => 465,
+    //         'crlf'    => "\r\n",
+    //         'newline' => "\r\n"
+    //     ];
 
-        // Load library email dan konfigurasinya
-        $this->load->library('email', $config);
+    //     // Load library email dan konfigurasinya
+    //     $this->load->library('email', $config);
 
-        // Email dan nama pengirim
-        $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
+    //     // Email dan nama pengirim
+    //     $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
-        $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.s1 AS sts, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor WHERE pelapor.id = '$id'");
-        $row = $sql->row_array();
+    //     $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.s1 AS sts, pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor WHERE pelapor.id = '$id'");
+    //     $row = $sql->row_array();
 
-        $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
-        // echo $isi;
+    //     $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+    //     // echo $isi;
 
-        // Email penerima
-        $this->email->to($isi); // Ganti dengan email tujuan
+    //     // Email penerima
+    //     $this->email->to($isi); // Ganti dengan email tujuan
 
-        // Subject email
-        $this->email->subject('SPDP Baru');
+    //     // Subject email
+    //     $this->email->subject('SPDP Baru');
 
-        $isi = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Penyidik " .  $row['tsk'] . ", nama Tersangka Pasal";
+    //     $isi = "Perkara Ini Sudah Tahap 1 Dengan Rincian : Penyidik " .  $row['tsk'] . ", nama Tersangka Pasal";
 
-        // Isi email
-        $this->email->message($isi);
+    //     // Isi email
+    //     $this->email->message($isi);
 
-        // Tampilkan pesan sukses atau error
-        if ($this->email->send()) {
-            $this->Spdp_model->tgl($id);
-            $this->session->set_flashdata('flash_email', 'Email Berhasil Terkirim');
-            redirect('spdp');
-        } else {
-            echo 'Error! email tidak dapat dikirim.';
-        }
-    }
+    //     // Tampilkan pesan sukses atau error
+    //     if ($this->email->send()) {
+    //         $this->Spdp_model->tgl($id);
+    //         $this->session->set_flashdata('flash_email', 'Email Berhasil Terkirim');
+    //         redirect('spdp');
+    //     } else {
+    //         echo 'Error! email tidak dapat dikirim.';
+    //     }
+    // }
 }
