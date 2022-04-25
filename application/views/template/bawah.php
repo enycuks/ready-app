@@ -77,6 +77,19 @@
     });
 </script>
 
+<script>
+function tampilkan(){
+  var nama_kota=document.getElementById("form1").kategori.value;
+  if (nama_kota=="Sudah")
+    {
+        document.getElementById("exposes").innerHTML="<option value='Sudah'>Sudah</option>";
+    }
+  else if (nama_kota=="Expose")
+    {
+        document.getElementById("exposes").innerHTML="<option value='a'>A</option>";
+    }
+}
+</script>
 </body>
 
 </html>

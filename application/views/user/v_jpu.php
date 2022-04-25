@@ -79,6 +79,9 @@
 
                                                                 $sql2 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose' && jexposes < 0 ";
                                                                 $query2 = $this->db->query($sql2);
+                                                                
+                                                                $sql2e = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose' && exposes='Expose' ";
+                                                                $query2e = $this->db->query($sql2e);
 
                                                                 $sql3 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose' && exposes='a' && jexposes > 0 && hasil_exposes IS NULL";
                                                                 $query3 = $this->db->query($sql3);
@@ -94,10 +97,16 @@
 
                                                                 $sql5 = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Sudah' && exposes='Sudah' && kejari='' ";
                                                                 $query5 = $this->db->query($sql5);
+                                                                
+                                                                $sa = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Expose' && exposes=''";
+                                                                $qa = $this->db->query($sa);
 
                                                                 $sqlhe = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Expose' && hasil_exposes='P-21' && kejari=''";
                                                                 $queryhe = $this->db->query($sqlhe);
 
+                                                                $sqlhew = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Belum' && hasil_exposes='P-21' && kejari=''";
+                                                                $queryhew = $this->db->query($sqlhew);
+                                                                
                                                                 $sqlhew = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Belum' && hasil_exposes='P-21' && kejari=''";
                                                                 $queryhew = $this->db->query($sqlhew);
 
@@ -148,12 +157,18 @@
                                                                 <?php
                                                                 } elseif ($query3->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/hexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                        <i class="ti-share">Hasil Exposes</i>
+                                                                        <i class="ti-share">Hasil Exposes1</i>
                                                                     </a>
                                                                     <?php
                                                                 } elseif ($qje->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/hexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
-                                                                        <i class="ti-share">Hasil Exposes</i>
+                                                                        <i class="ti-share">Hasil Exposes2</i>
+                                                                    </a>
+                                                                    
+                                                                   <?php
+                                                                } elseif ($query2e->num_rows() > 0) { ?>
+                                                                    <a href="<?= base_url() ?>user/hexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                        <i class="ti-share">Hasil Exposes3</i>
                                                                     </a>
                                                                     
                                                                 <?php
@@ -173,6 +188,11 @@
                                                                     </a>
                                                                     <?php
                                                                 } elseif ($queryhew->num_rows() > 0) { ?>
+                                                                    <a href="<?= base_url() ?>user/p21/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
+                                                                        <i class="ti-share">P21</i>
+                                                                    </a>
+                                                                     <?php
+                                                                } elseif ($qa->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/p21/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">P21</i>
                                                                     </a>

@@ -103,7 +103,7 @@
                                             <label class="col-sm-4 col-form-label">Hasil Exposes ?
                                             </label>
                                             <div class="col-sm-8">
-                                                <select name="hasil_exposes" class="form-control">
+                                                <select name="hasil_exposes" class="form-control" required>
                                                     <option value="">--Pilih--</option>
                                                     <option value="P-18">P-18</option>
                                                     <option value="P-21">P-21</option>
