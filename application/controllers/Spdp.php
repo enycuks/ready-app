@@ -18,6 +18,16 @@ class Spdp extends CI_Controller
         $this->load->view('template/bawah');
     }
 
+    public function cek()
+    {
+        $this->load->view('email_template');
+    }
+
+    public function cek1()
+    {
+        $this->load->view('template_email');
+    }
+
     public function add()
     {
         $data['penyidik'] = $this->Spdp_model->getPenyidik();
