@@ -138,7 +138,7 @@
                                                                     Selesai Selesai P-18
                                                                 <?php
                                                                 } elseif ($queryberkas->num_rows() > 0) { ?>
-                                                                    Menunggu Keputusan Wakajati
+                                                                    Menunggu Keputusan ASPIDUM
                                                                 <?php
                                                                 } elseif ($query1->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/b1/<?= $value['id']; ?>" class="btn btn-success btn-sm">

@@ -90,6 +90,7 @@ class User extends CI_Controller
             $config = [
                 'mailtype'  => 'html',
                 'charset'   => 'utf-8',
+                'priority' => '1',
                 'protocol'  => 'smtp',
                 'smtp_host' => 'smtp.gmail.com',
                 'smtp_user' => 'enycuks@gmail.com',  // Email gmail
@@ -107,9 +108,9 @@ class User extends CI_Controller
             $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
             $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor INNER JOIN user AS j ON j.id_user = pelapor.jpu INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum INNER JOIN user AS k ON k.id_user = pelapor.koor INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik WHERE pelapor.id = '$id'");
-            $row = $sql->row_array();
+            $data = $sql->row_array();
 
-            $isi = $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+            $isi = $data['jp_email'] . ", " . $data['ks_email'] . ", " . $data['asp_email'] . ", " . $data['k_email'];
             // echo $isi;
 
             // Email penerima
@@ -118,25 +119,18 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('SPDP Baru');
 
-            $isi1 = "Perkara Ini Sudah Tahap 1 Dengan Rincian : 
-            " . "<br>" .
-                "Penyidik : "
-                . $row['nama_penyidik'] . "
-            " . "<br>" .
-                "Nama Tersangka : "
-                . $row['tsk'] . ".
-            " . "<br>" .
-                "Pasal : " . $row['pasal'] . " .
-            " . "<br>" .
-                " Nama JPU : " . $row['nama_jpu'] . "";
+            $data = array(
+                'judul' => 'Perkara Ini Sudah Tahap 1 Dengan Rincian :',
+                'penyidik' => $data['nama_penyidik'],
+                'tsk' => $data['tsk'],
+                'pasal' => $data['pasal'],
+                'jpu' => $data['nama_jpu']
+            );
 
-            // Isi email
-            $this->email->message($isi1);
+            $body = $this->load->view('template_email.php', $data, TRUE);
+            $this->email->message($body);
 
-            // Isi email
-            $this->email->message($isi1);
-
-            // Tampilkan pesan sukses atau error
+            //Tampilkan pesan sukses atau error
             if ($this->email->send()) {
                 $this->Spdp_model->s1tgl($id);
                 $this->session->set_flashdata('flash', 'DiProses');
@@ -332,24 +326,28 @@ class User extends CI_Controller
             // Email dan nama pengirim
             $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
-            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor 
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu, ex.waktu 
+            FROM data_pelapor AS pelapor 
             INNER JOIN user AS j ON j.id_user = pelapor.jpu 
             INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
             INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
             INNER JOIN user AS k ON k.id_user = pelapor.koor 
             INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            INNER JOIN exposes AS ex ON ex.id_exposes = pelapor.jexposes 
             WHERE pelapor.id = '$id'");
             $row = $sql->row_array();
             $wka = 'joem.borneo.wakajati@gmail.com';
             $isi = $wka . "," . $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
-
+            $waktu = $row['waktu'];
+            $tgl = date_create($waktu);
+            $indo = date_format($tgl, 'd/m/Y H:i');
             // Email penerima
             $this->email->to($isi); // Ganti dengan email tujuan
 
             // Subject email
             $this->email->subject('Exposes');
 
-            $isi1 = "Exposes akan dilakukan di " . $t4 . "/ " . $time . "  : 
+            $isi1 = "Exposes akan dilakukan di " . $t4 . "Pada" . $indo . "  : 
                     " . "<br>" .
                 "Penyidik : "
                 . $row['nama_penyidik'] . "
@@ -384,7 +382,7 @@ class User extends CI_Controller
             $this->load->view('template/bawah');
         } else {
             $t4 = $this->input->post('tempat');
-            $time = $this->input->post('waktu');
+
             $this->User_model->uexposes();
             $this->User_model->texposes();
 
@@ -408,16 +406,23 @@ class User extends CI_Controller
             // Email dan nama pengirim
             $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
-            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu FROM data_pelapor AS pelapor 
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu, ex.waktu
+            
+            FROM data_pelapor AS pelapor 
             INNER JOIN user AS j ON j.id_user = pelapor.jpu 
             INNER JOIN user AS ksi ON ksi.id_user = pelapor.kasi 
             INNER JOIN user AS asp ON asp.id_user = pelapor.aspidum 
             INNER JOIN user AS k ON k.id_user = pelapor.koor 
             INNER JOIN instansi AS p ON p.id_instansi = pelapor.penyidik 
+            INNER JOIN exposes AS ex ON ex.id_exposes = pelapor.jexposes 
             WHERE pelapor.id = '$id'");
             $row = $sql->row_array();
             $wka = 'joem.borneo.wakajati@gmail.com';
             $isi = $wka . "," . $row['jp_email'] . ", " . $row['ks_email'] . ", " . $row['asp_email'] . ", " . $row['k_email'];
+
+            $waktu = $row['waktu'];
+            $tgl = date_create($waktu);
+            $indo = date_format($tgl, 'd/m/Y H:i');
 
             // Email penerima
             $this->email->to($isi); // Ganti dengan email tujuan
@@ -425,13 +430,13 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('Exposes');
 
-            $isi1 = "Exposes akan dilakukan di " . $t4 . "/ " . $time . "  : 
+            $isi1 = "Exposes akan dilakukan di " . $t4 . "Pada" . $indo . "  : 
                     " . "<br>" .
                 "Penyidik : "
                 . $row['nama_penyidik'] . "
                     " . "<br>" .
                 "Nama Tersangka : "
-                . $row['tsk'] . ".
+                . $row['tsk'] . "
                 " . "<br>" .
                 "Pasal : " . $row['pasal'] . " .
                     " . "<br>" .
@@ -634,7 +639,7 @@ class User extends CI_Controller
             // Email dan nama pengirim
             $this->email->from('enycuks@gmail.com', 'Koordinator SPDP');
 
-            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, pelapor.petunjuk AS petunjuk,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu,
+            $sql = $this->db->query("SELECT pelapor.id AS id, pelapor.nama_tersangka AS tsk, pelapor.tgl_t2 AS tgl_t2,pelapor.pasal AS pasal ,pelapor.s1 AS sts, pelapor.penyidik as penyidik,pelapor.jpu AS jpu, pelapor.kasi AS ks, pelapor.aspidum AS asp, pelapor.koor AS koor, pelapor.p17 AS p17, pelapor.petunjuk AS petunjuk,j.email AS jp_email, ksi.email AS ks_email, asp.email AS asp_email , k.email AS k_email , p.nama AS nama_penyidik, j.nama as nama_jpu,
             pelapor.kejari, sj.satker
                         FROM data_pelapor AS pelapor 
                         INNER JOIN user AS j ON j.id_user = pelapor.jpu 

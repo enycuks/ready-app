@@ -74,6 +74,12 @@
                                                                     <a href="<?= base_url() ?>spdp/update/<?= $value['id']; ?>" class="btn btn-success btn-sm">
                                                                         <i class="icofont icofont-pencil-alt-5"></i>
                                                                     </a>
+                                                                    <a href="<?= base_url() ?>spdp/cek/" class="btn btn-success btn-sm">
+                                                                        Cek
+                                                                    </a>
+                                                                    <a href="<?= base_url() ?>spdp/cek1/" class="btn btn-success btn-sm">
+                                                                        Cek1
+                                                                    </a>
                                                                     <a onclick="return confirm('Yakin Hapus')" href="<?= base_url() ?>spdp/delete/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
                                                                         <i class="icofont icofont-trash"></i>
                                                                     </a>
