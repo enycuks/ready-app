@@ -155,6 +155,7 @@ class User extends CI_Controller
             $config = [
                 'mailtype'  => 'html',
                 'charset'   => 'utf-8',
+                'priority' => '1',
                 'protocol'  => 'smtp',
                 'smtp_host' => 'smtp.gmail.com',
                 'smtp_user' => 'enycuks@gmail.com',  // Email gmail
@@ -189,22 +190,33 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('SPDP Status');
 
-            $isi1 = "Terbikan P-17 Dengan Rincian : 
-                    " . "<br>" .
-                "Penyidik : "
-                . $row['nama_penyidik'] . "
-                    " . "<br>" .
-                "Nama Tersangka : "
-                . $row['tsk'] . ".
-                    " . "<br>" .
-                "Pasal : " . $row['pasal'] . " .
-                    " . "<br>" .
-                "Status P17 : " . $row['p17'] . "
-                    " . "<br>" .
-                " Nama JPU : " . $row['nama_jpu'] . "";
+            $data = array(
+                'judul' => 'Terbikan P-17 Dengan Rincian :',
+                'penyidik' => $data['nama_penyidik'],
+                'tsk' => $data['tsk'],
+                'pasal' => $data['pasal'],
+                'jpu' => $data['nama_jpu']
+            );
 
-            // Isi email
-            $this->email->message($isi1);
+            $body = $this->load->view('template_email.php', $data, TRUE);
+            $this->email->message($body);
+
+            // $isi1 = "Terbikan P-17 Dengan Rincian : 
+            //         " . "<br>" .
+            //     "Penyidik : "
+            //     . $row['nama_penyidik'] . "
+            //         " . "<br>" .
+            //     "Nama Tersangka : "
+            //     . $row['tsk'] . ".
+            //         " . "<br>" .
+            //     "Pasal : " . $row['pasal'] . " .
+            //         " . "<br>" .
+            //     "Status P17 : " . $row['p17'] . "
+            //         " . "<br>" .
+            //     " Nama JPU : " . $row['nama_jpu'] . "";
+
+            // // Isi email
+            // $this->email->message($isi1);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
@@ -231,6 +243,7 @@ class User extends CI_Controller
             $config = [
                 'mailtype'  => 'html',
                 'charset'   => 'utf-8',
+                'priority' => '1',
                 'protocol'  => 'smtp',
                 'smtp_host' => 'smtp.gmail.com',
                 'smtp_user' => 'enycuks@gmail.com',  // Email gmail
@@ -264,23 +277,35 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('SPDP Status');
 
-            $isi1 = "Status Berkas : 
-                    " . "<br>" .
-                "Penyidik : "
-                . $row['nama_penyidik'] . "
-                    " . "<br>" .
-                "Nama Tersangka : "
-                . $row['tsk'] . ".
-                " . "<br>" .
-                "Status Berkas : "
-                . $bks . ".
-                    " . "<br>" .
-                "Pasal : " . $row['pasal'] . " .
-                    " . "<br>" .
-                " Nama JPU : " . $row['nama_jpu'] . "";
+            // $isi1 = "Status Berkas : 
+            //         " . "<br>" .
+            //     "Penyidik : "
+            //     . $row['nama_penyidik'] . "
+            //         " . "<br>" .
+            //     "Nama Tersangka : "
+            //     . $row['tsk'] . ".
+            //     " . "<br>" .
+            //     "Status Berkas : "
+            //     . $bks . ".
+            //         " . "<br>" .
+            //     "Pasal : " . $row['pasal'] . " .
+            //         " . "<br>" .
+            //     " Nama JPU : " . $row['nama_jpu'] . "";
 
-            // Isi email
-            $this->email->message($isi1);
+            // // Isi email
+            // $this->email->message($isi1);
+
+            $data = array(
+                'judul' => 'Status Berkas :',
+                'penyidik' => $row['nama_penyidik'],
+                'tsk' => $row['tsk'],
+                'pasal' => $row['pasal'],
+                'berkas' => $bks,
+                'jpu' => $row['nama_jpu']
+            );
+
+            $body = $this->load->view('template_email.php', $data, TRUE);
+            $this->email->message($body);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
@@ -347,20 +372,32 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('Exposes');
 
-            $isi1 = "Exposes akan dilakukan di " . $t4 . "Pada" . $indo . "  : 
-                    " . "<br>" .
-                "Penyidik : "
-                . $row['nama_penyidik'] . "
-                    " . "<br>" .
-                "Nama Tersangka : "
-                . $row['tsk'] . ".
-                " . "<br>" .
-                "Pasal : " . $row['pasal'] . " .
-                    " . "<br>" .
-                " Nama JPU : " . $row['nama_jpu'] . "";
+            // $isi1 = "Exposes akan dilakukan di " . $t4 . "Pada" . $indo . "  : 
+            //         " . "<br>" .
+            //     "Penyidik : "
+            //     . $row['nama_penyidik'] . "
+            //         " . "<br>" .
+            //     "Nama Tersangka : "
+            //     . $row['tsk'] . ".
+            //     " . "<br>" .
+            //     "Pasal : " . $row['pasal'] . " .
+            //         " . "<br>" .
+            //     " Nama JPU : " . $row['nama_jpu'] . "";
 
-            // Isi email
-            $this->email->message($isi1);
+            // // Isi email
+            // $this->email->message($isi1);
+
+            $data = array(
+                'judul' => 'Pelaksanaan Exposes :',
+                't4' => $t4,
+                'indo' => $indo,
+                'penyidik' => $row['nama_penyidik'],
+                'tsk' => $row['tsk'],
+                'pasal' => $row['pasal'],
+                'jpu' => $row['nama_jpu']
+            );
+            $body = $this->load->view('template_email.php', $data, TRUE);
+            $this->email->message($body);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
@@ -430,20 +467,32 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('Exposes');
 
-            $isi1 = "Exposes akan dilakukan di " . $t4 . "Pada" . $indo . "  : 
-                    " . "<br>" .
-                "Penyidik : "
-                . $row['nama_penyidik'] . "
-                    " . "<br>" .
-                "Nama Tersangka : "
-                . $row['tsk'] . "
-                " . "<br>" .
-                "Pasal : " . $row['pasal'] . " .
-                    " . "<br>" .
-                " Nama JPU : " . $row['nama_jpu'] . "";
+            // $isi1 = "Exposes akan dilakukan di " . $t4 . "Pada" . $indo . "  : 
+            //         " . "<br>" .
+            //     "Penyidik : "
+            //     . $row['nama_penyidik'] . "
+            //         " . "<br>" .
+            //     "Nama Tersangka : "
+            //     . $row['tsk'] . "
+            //     " . "<br>" .
+            //     "Pasal : " . $row['pasal'] . " .
+            //         " . "<br>" .
+            //     " Nama JPU : " . $row['nama_jpu'] . "";
 
-            // Isi email
-            $this->email->message($isi1);
+            // // Isi email
+            // $this->email->message($isi1);
+
+            $data = array(
+                'judul' => 'Pelaksanaan Exposes :',
+                't4' => $t4,
+                'indo' => $indo,
+                'penyidik' => $row['nama_penyidik'],
+                'tsk' => $row['tsk'],
+                'pasal' => $row['pasal'],
+                'jpu' => $row['nama_jpu']
+            );
+            $body = $this->load->view('template_email.php', $data, TRUE);
+            $this->email->message($body);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
@@ -505,20 +554,31 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('Hasil Exposes');
 
-            $isi1 = "Hasil Exposes Adalah " . "$hasil" . " 
-                    " . "<br>" .
-                "Penyidik : "
-                . $row['nama_penyidik'] . "
-                    " . "<br>" .
-                "Nama Tersangka : "
-                . $row['tsk'] . ".
-                " . "<br>" .
-                "Pasal : " . $row['pasal'] . " .
-                    " . "<br>" .
-                " Nama JPU : " . $row['nama_jpu'] . "";
+            // $isi1 = "Hasil Exposes Adalah " . "$hasil" . " 
+            //         " . "<br>" .
+            //     "Penyidik : "
+            //     . $row['nama_penyidik'] . "
+            //         " . "<br>" .
+            //     "Nama Tersangka : "
+            //     . $row['tsk'] . ".
+            //     " . "<br>" .
+            //     "Pasal : " . $row['pasal'] . " .
+            //         " . "<br>" .
+            //     " Nama JPU : " . $row['nama_jpu'] . "";
 
-            // Isi email
-            $this->email->message($isi1);
+            // // Isi email
+            // $this->email->message($isi1);
+
+            $data = array(
+                'judul' => 'Hasil Exposes Adalah :',
+                'hasil' => $hasil,
+                'penyidik' => $row['nama_penyidik'],
+                'tsk' => $row['tsk'],
+                'pasal' => $row['pasal'],
+                'jpu' => $row['nama_jpu']
+            );
+            $body = $this->load->view('template_email.php', $data, TRUE);
+            $this->email->message($body);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
@@ -814,23 +874,34 @@ class User extends CI_Controller
             // Subject email
             $this->email->subject('SPDP Status');
 
-            $isi1 = "Status Berkas : 
-                    " . "<br>" .
-                "Penyidik : "
-                . $row['nama_penyidik'] . "
-                    " . "<br>" .
-                "Nama Tersangka : "
-                . $row['tsk'] . ".
-                " . "<br>" .
-                "Status Berkas : "
-                . $bks . ".
-                    " . "<br>" .
-                "Pasal : " . $row['pasal'] . " .
-                    " . "<br>" .
-                " Nama JPU : " . $row['nama_jpu'] . "";
+            // $isi1 = "Status Berkas : 
+            //         " . "<br>" .
+            //     "Penyidik : "
+            //     . $row['nama_penyidik'] . "
+            //         " . "<br>" .
+            //     "Nama Tersangka : "
+            //     . $row['tsk'] . ".
+            //     " . "<br>" .
+            //     "Status Berkas : "
+            //     . $bks . ".
+            //         " . "<br>" .
+            //     "Pasal : " . $row['pasal'] . " .
+            //         " . "<br>" .
+            //     " Nama JPU : " . $row['nama_jpu'] . "";
 
-            // Isi email
-            $this->email->message($isi1);
+            // // Isi email
+            // $this->email->message($isi1);
+
+            $data = array(
+                'judul' => 'Pelaksanaan Exposes :',
+                'berkas' => $bks,
+                'penyidik' => $row['nama_penyidik'],
+                'tsk' => $row['tsk'],
+                'pasal' => $row['pasal'],
+                'jpu' => $row['nama_jpu']
+            );
+            $body = $this->load->view('template_email.php', $data, TRUE);
+            $this->email->message($body);
 
             // Tampilkan pesan sukses atau error
             if ($this->email->send()) {
