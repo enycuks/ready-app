@@ -44,6 +44,18 @@
                                         <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;"><?= $judul ?></h1>
 
                                         <table align="center" style="font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+                                            <?php if (isset($t4) and isset($indo)) : ?>
+                                                <tr>
+                                                    <td>Lokasi Exposes</td>
+                                                    <td>:</td>
+                                                    <td><?= $t4 ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tanggal & Jam</td>
+                                                    <td>:</td>
+                                                    <td><?= $indo ?></td>
+                                                </tr>
+                                            <?php endif ?>
                                             <tr>
                                                 <td style="width: 50%;">Penyidik</td>
                                                 <td style="width: 5%;">:</td>
@@ -64,6 +76,21 @@
                                                 <td>:</td>
                                                 <td><?= $jpu ?></td>
                                             </tr>
+                                            <?php if (isset($berkas)) : ?>
+                                                <tr>
+                                                    <td>Kelengkapan Berkas/ Status</td>
+                                                    <td>:</td>
+                                                    <td><?= $berkas ?></td>
+                                                </tr>
+                                            <?php endif ?>
+                                            <?php if (isset($hasil)) : ?>
+                                                <tr>
+                                                    <td>Hasil Exposes</td>
+                                                    <td>:</td>
+                                                    <td><?= $hasil ?></td>
+                                                </tr>
+                                            <?php endif ?>
+
                                         </table>
 
                                         <br>

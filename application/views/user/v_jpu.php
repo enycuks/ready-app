@@ -79,7 +79,7 @@
 
                                                                 $sql2 = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose' && jexposes < 0 ";
                                                                 $query2 = $this->db->query($sql2);
-                                                                
+
                                                                 $sql2e = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Expose' && exposes='Expose' ";
                                                                 $query2e = $this->db->query($sql2e);
 
@@ -91,13 +91,13 @@
 
                                                                 $je = "SELECT id, tgl FROM data_pelapor WHERE  id=$id && s1='y' && berkas='Belum' && exposes='Belum' && jexposes > 0 && hasil_exposes IS NULL";
                                                                 $qje = $this->db->query($je);
-                                                        
+
                                                                 $sql4 = "SELECT id, tgl, hasil_exposes FROM data_pelapor WHERE  id=$id && s1='y' && hasil_exposes='P-18'";
                                                                 $query4 = $this->db->query($sql4);
 
                                                                 $sql5 = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Sudah' && exposes='Sudah' && kejari='' ";
                                                                 $query5 = $this->db->query($sql5);
-                                                                
+
                                                                 $sa = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Expose' && exposes=''";
                                                                 $qa = $this->db->query($sa);
 
@@ -106,7 +106,7 @@
 
                                                                 $sqlhew = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Belum' && hasil_exposes='P-21' && kejari=''";
                                                                 $queryhew = $this->db->query($sqlhew);
-                                                                
+
                                                                 $sqlhew = "SELECT id, hasil_exposes FROM data_pelapor WHERE id=$id && s1='y' && berkas='Belum' && hasil_exposes='P-21' && kejari=''";
                                                                 $queryhew = $this->db->query($sqlhew);
 
@@ -118,7 +118,7 @@
 
                                                                 $t2hew = "SELECT id, t2 FROM data_pelapor WHERE id=$id && s1='y' && berkas='Belum' && hasil_exposes='P-21' && t2 !='Sudah'";
                                                                 $qt2hew = $this->db->query($t2hew);
-                                                                
+
                                                                 $sql7 = "SELECT id FROM data_pelapor WHERE id=$id && s1='y' && t2='Sudah'";
                                                                 $query7 = $this->db->query($sql7);
 
@@ -129,11 +129,11 @@
                                                                     <a href="<?= base_url() ?>user/p17/<?= $value['id']; ?>" class="btn btn-danger btn-sm">
                                                                         <i class="ti-share">Terbikan P-17</i>
                                                                     </a>
-                                                                    
+
                                                                 <?php
                                                                 } elseif ($query17->num_rows() > 0) { ?>
                                                                     Selesai P-17 Sudah Di Terbitkan
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($query18->num_rows() > 0) { ?>
                                                                     Selesai Selesai P-18
                                                                 <?php
@@ -149,7 +149,7 @@
                                                                     <a href="<?= base_url() ?>user/bexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">Exposes</i>
                                                                     </a>
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($qjex->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/bexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">Exposes</i>
@@ -159,18 +159,18 @@
                                                                     <a href="<?= base_url() ?>user/hexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">Hasil Exposes1</i>
                                                                     </a>
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($qje->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/hexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">Hasil Exposes2</i>
                                                                     </a>
-                                                                    
-                                                                   <?php
+
+                                                                <?php
                                                                 } elseif ($query2e->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/hexposes/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">Hasil Exposes3</i>
                                                                     </a>
-                                                                    
+
                                                                 <?php
                                                                 } elseif ($query4->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/p18/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
@@ -181,17 +181,17 @@
                                                                     <a href="<?= base_url() ?>user/p21/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">P21</i>
                                                                     </a>
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($queryhe->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/p21/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">P21</i>
                                                                     </a>
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($queryhew->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/p21/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">P21</i>
                                                                     </a>
-                                                                     <?php
+                                                                <?php
                                                                 } elseif ($qa->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/p21/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">P21</i>
@@ -201,17 +201,17 @@
                                                                     <a href="<?= base_url() ?>user/t2/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">T2 Sudah?k</i>
                                                                     </a>
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($qt2he->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/t2/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">T2 Sudah?k</i>
                                                                     </a>
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($qt2hew->num_rows() > 0) { ?>
                                                                     <a href="<?= base_url() ?>user/t2/<?= $value['id']; ?>" class="btn btn-primary btn-sm">
                                                                         <i class="ti-share">T2 Sudah?k</i>
                                                                     </a>
-                                                                    <?php
+                                                                <?php
                                                                 } elseif ($query7->num_rows() > 0) { ?>
                                                                     Selesai
                                                                 <?php } else { ?>
