@@ -81,7 +81,7 @@
                                             <div class="col-sm-8">
                                                 <select name="bks" class="form-control" required>
                                                     <option value="">--Pilih--</option>
-                                                    <option value="Belum">Belum</option>
+                                                    <option value="">Belum</option>
                                                     <option value="Sudah">Sudah</option>
                                                     <option value="Expose">Exposes</option>
                                                 </select>

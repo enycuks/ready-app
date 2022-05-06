@@ -98,7 +98,7 @@
                                                     </label>
                                                     <div class="col-sm-8">
                                                         <select class="form-control" name="p17" required>
-                                                            <option value="Belum"> Belum </option>
+                                                            <option value=""> Belum </option>
                                                             <option value="Sudah"> Sudah </option>
                                                         </select>
                                                     </div>

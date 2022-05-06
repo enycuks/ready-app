@@ -49,22 +49,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
-                            " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                            " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                            " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                            " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                        " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
+                    //         " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //         " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //         " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //         " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //     " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Sudah Tahap 1 Dari Perkara Berikut :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -116,22 +127,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
-                            " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                            " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                            " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                            " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                            " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
+                    //         " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //         " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //         " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //         " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //         " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Sudah Tahap 1 Dari Perkara Berikut :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -183,22 +205,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
-                            " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                            " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                            " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                            " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                            " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
+                    //         " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //         " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //         " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //         " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //         " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Sudah Tahap 1 Dari Perkara Berikut :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -252,22 +285,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
-                            " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                            " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                            " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                            " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                            " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Sudah Tahap 1 Dari Perkara Berikut : 
+                    //         " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //         " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //         " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //         " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //         " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Sudah Tahap 1 Dari Perkara Berikut :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -321,22 +365,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Terbikan P-17 Dengan Rincian : 
-                    " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                    " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                    " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                    " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                        " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Terbikan P-17 Dengan Rincian : 
+                    // " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    // " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    // " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    // " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //     " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Terbikan P-17 Dengan Rincian  :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -389,24 +444,36 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Terbikan P-17 Dengan Rincian : 
-                    " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                    " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                    " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                    " . "<br>" .
-                        "Status P17 : " . $u['p17'] . "
-                    " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                    " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Terbikan P-17 Dengan Rincian : 
+                    // " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    // " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    // " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    // " . "<br>" .
+                    //     "Status P17 : " . $u['p17'] . "
+                    // " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    // " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Terbikan P-17 Dengan Rincian  :',
+                        'p17' => $u['p17'],
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -460,25 +527,37 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Perkara Ini P-17 Dengan Rincian : 
-                        " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                        " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                        " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                        " . "<br>" .
-                        "Status P17 : " . $u['p17'] . "
-                        " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                        " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
-                    // echo $isi1;
+                    // $isi1 = "Perkara Ini P-17 Dengan Rincian : 
+                    //     " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //     " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //     " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //     " . "<br>" .
+                    //     "Status P17 : " . $u['p17'] . "
+                    //     " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //     " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // // echo $isi1;
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Perkara Ini P-17 Dengan Rincian   :',
+                        'p17' => $u['p17'],
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -538,22 +617,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Berkas Berikut Sudah Lengkap ? : 
-                            " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                            " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                            " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                            " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                            " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Berkas Berikut Sudah Lengkap ? : 
+                    //         " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //         " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //         " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //         " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //         " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Berkas Berikut Sudah Lengkap ? :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -607,22 +697,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Berkas Berikut Sudah Lengkap ? : 
-                            " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                            " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                            " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                            " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                            " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Berkas Berikut Sudah Lengkap ? : 
+                    //         " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //         " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //         " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //         " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //         " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Berkas Berikut Sudah Lengkap ? :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -705,22 +806,33 @@ class Send_email extends CI_Controller
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Berkas Berikut Sudah Tahap 2 ? : 
-                                " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                                " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                                " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                                " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                                " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Berkas Berikut Sudah Tahap 2 ? : 
+                    //             " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //             " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //             " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //             " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //             " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Berkas Berikut Sudah Tahap 2 ? :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -802,22 +914,33 @@ pelapor.id AS id,
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Berkas Berikut Sudah Tahap 2 ? : 
-                                        " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                                        " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                                        " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                                        " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                                        " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Berkas Berikut Sudah Tahap 2 ? : 
+                    //                     " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //                     " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //                     " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //                     " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //                     " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Berkas Berikut Sudah Tahap 2 ? :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -899,22 +1022,33 @@ pelapor.id AS id,
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Apakah Berkas Berikut Sudah Tahap 2 ? : 
-                                                        " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                                                        " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                                                        " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                                                        " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                                                        " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // $isi1 = "Apakah Berkas Berikut Sudah Tahap 2 ? : 
+                    //                                     " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //                                     " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //                                     " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //                                     " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //                                     " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Apakah Berkas Berikut Sudah Tahap 2 ? :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -998,23 +1132,34 @@ pelapor.id AS id,
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Mohon Cek Perkara Ini P-18 Dengan Rincian : 
-                                " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                                " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                                " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                                " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                                " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
-                    // echo $isi1;
+                    // $isi1 = "Mohon Cek Perkara Ini P-18 Dengan Rincian : 
+                    //             " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //             " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //             " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //             " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //             " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // // echo $isi1;
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Mohon Cek Perkara Ini P-18 Dengan Rincian :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -1104,23 +1249,33 @@ pelapor.id AS id,
                     // Subject email
                     $this->email->subject('Mohon Tindak Lanjut SPDP');
 
-                    $isi1 = "Mohon Cek Perkara Ini P-18 Dengan Rincian : 
-                                        " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                                        " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                                        " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                                        " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                                        " . "<br>" .
-                        "Segera Dicek Pada Dashboard https://sipppakk.com/";
-                    // echo $isi1;
+                    // $isi1 = "Mohon Cek Perkara Ini P-18 Dengan Rincian : 
+                    //                     " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //                     " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //                     " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //                     " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //                     " . "<br>" .
+                    //     "Segera Dicek Pada Dashboard https://sipppakk.com/";
+                    // // echo $isi1;
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Mohon Cek Perkara Ini P-18 Dengan Rincian :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
@@ -1210,22 +1365,34 @@ pelapor.id AS id,
                     // Subject email
                     $this->email->subject('P-19');
 
-                    $isi1 = "Perkara Ini P-19 Sudah Terbit Dengan Rincian : 
-                                        " . "<br>" .
-                        "Penyidik : "
-                        . $u['nama_penyidik'] . "
-                                        " . "<br>" .
-                        "Nama Tersangka : "
-                        . $u['tsk'] . ".
-                                        " . "<br>" .
-                        "Pasal : " . $u['pasal'] . " .
-                                        " . "<br>" .
-                        " Nama JPU : " . $u['nama_jpu'] . "
-                                        " . "<br>" . "";
-                    // echo $isi1;
+                    // $isi1 = "Perkara Ini P-19 Sudah Terbit Dengan Rincian : 
+                    //                     " . "<br>" .
+                    //     "Penyidik : "
+                    //     . $u['nama_penyidik'] . "
+                    //                     " . "<br>" .
+                    //     "Nama Tersangka : "
+                    //     . $u['tsk'] . ".
+                    //                     " . "<br>" .
+                    //     "Pasal : " . $u['pasal'] . " .
+                    //                     " . "<br>" .
+                    //     " Nama JPU : " . $u['nama_jpu'] . "
+                    //                     " . "<br>" . "";
+                    // // echo $isi1;
 
-                    // Isi email
-                    $this->email->message($isi1);
+                    // // Isi email
+                    // $this->email->message($isi1);
+
+                    $data = array(
+                        'judul' => 'Perkara Ini P-19 Sudah Terbit Dengan Rincian :',
+                        'penyidik' => $u['nama_penyidik'],
+                        'tsk' => $u['tsk'],
+                        'pasal' => $u['pasal'],
+                        'jpu' => $u['nama_jpu']
+                    );
+
+                    $body = $this->load->view('reminder_template.php', $data, TRUE);
+                    $this->email->message($body);
+
 
                     // Tampilkan pesan sukses atau error
                     if ($this->email->send()) {
