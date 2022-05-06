@@ -106,6 +106,13 @@
                                                     <td><?= $t2 ?></td>
                                                 </tr>
                                             <?php endif ?>
+                                            <?php if (isset($p17)) : ?>
+                                                <tr>
+                                                    <td>Status P-17</td>
+                                                    <td>:</td>
+                                                    <td><?= $p17 ?></td>
+                                                </tr>
+                                            <?php endif ?>
 
                                         </table>
                                     </td>
@@ -115,6 +122,8 @@
                                     </td>
                                 </tr>
                             </table>
+                            <br>
+                            <a href="http://sipppakk.com/" style="background-color:#1F7F4C;border-radius:5px;color:#ffffff;display:inline-block;font-size: 18px; font-family: Helvetica, Arial, sans-serif;font-weight:bold;line-height:40px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;">Klik Disini &rarr;</a>
                         </td>
                     </tr>
                     <tr>

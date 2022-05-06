@@ -76,43 +76,43 @@
                                             </div>
                                         </div>
                                         <?php
-                                        if(isset($spdp1['tempat'])  != ""):?>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Status Berkas ?
-                                            </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" value="Ekspose" required readonly>
+                                        if (isset($spdp1['tempat'])  != "") : ?>
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Status Berkas ?
+                                                </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" value="Ekspose" required readonly>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <?php endif?>
+                                        <?php endif ?>
                                         <br>
                                         <?php
-                                        if(isset($spdp1['tempat'])  != ""):?>
-                                        <h4 class="sub-title">Exposes</h4>
+                                        if (isset($spdp1['tempat'])  != "") : ?>
+                                            <h4 class="sub-title">Exposes</h4>
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Tempat</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="tempat" value="<?= $spdp['tempat'] ?>" readonly required>
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Tempat</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" name="tempat" value="<?= $spdp['tempat'] ?>" readonly required>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Waktu</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="waktu" value="<?= $spdp['tgl_t2'] ?>" readonly required>
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Waktu</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" name="waktu" value="<?= $spdp['tgl_t2'] ?>" readonly required>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Hasil Exposes ?
-                                            </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="waktu" value="P-21" readonly required>
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Hasil Exposes ?
+                                                </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" name="waktu" value="P-21" readonly required>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <?php endif?>
+                                        <?php endif ?>
                                         <h4 class="sub-title">Tahap 2 Dilakukan</h4>
-                                         <div class="form-group row">
+                                        <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Nama Kejari
                                             </label>
                                             <div class="col-sm-8">
@@ -140,7 +140,7 @@
                                             </label>
                                             <div class="col-sm-8">
                                                 <select class="form-control" name="t2" required>
-                                                    <option value="Belum"> Belum </option>
+                                                    <option value=""> Belum </option>
                                                     <option value="Sudah"> Sudah </option>
                                                 </select>
                                             </div>
