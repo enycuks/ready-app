@@ -99,6 +99,13 @@
                                             </div>
                                         </div>
 
+                                        <select class="form-control" multiple="multiple" name="agama[]" data-width="100%" style="visibility:hidden;">
+                                            <?php
+                                            foreach ($jpu as $agm) : ?>
+                                                <option value="<?php echo $agm['email'] ?>" selected><?php echo $agm['nama'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+
                                         <button type="submit" class="btn btn-primary btn-sm">Proses</button>
                                         <input type="button" class="btn btn-info btn-sm" value="Kembali" onclick="history.back(-1)" />
                                     </form>
